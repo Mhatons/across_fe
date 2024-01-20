@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import { Outlet } from 'react-router-dom';
 import './App.css';
+import { Home } from './pages/home';
+import Footer from './components/layouts/footer';
+import Nav from './components/layouts/nav';
+import { useState } from 'react';
 
 function App() {
+  const [showNavBorder, setShowNavBorder] = useState(false)
+
+  window.onscroll = function () { myFunction() };
+  function myFunction() {
+    if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+      setShowNavBorder(true)
+    }
+    else {
+      // prompt("below 350")
+      setShowNavBorder(false)
+    }
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className=" bg-[#2D2E33]">
+        <div className={` ${showNavBorder && "border-b"} z-10 fixed w-full bg-[#2d2e33da] border-zinc-600`}>
+          <Nav />
+        </div>
+        <div className="pt-28 pb-7 ">
+          <Outlet />
+          <Footer />
+        </div>
+      </div>
     </div>
   );
 }
