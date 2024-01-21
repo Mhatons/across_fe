@@ -24,7 +24,7 @@ export default function ReferalBar(props) {
         },
     ]
     return (
-        <div className="bg-[#34353B] border border-zinc-700 rounded-xl mb-16 mt-8">
+        <div className="bg-[#34353B] border border-zinc-700 rounded-xl mt-8">
             <div className="w-[91%] m-auto py-6">
                 <section style={{ backgroundImage: `url(${backgroundLinesOne})`, backgroundRepeat: "no-repeat" }} className="border rounded-xl border-[#3A4B4C] px-4 py-6 flex justify-between items-center">
                     <div className="flex w-[70%] items-center gap-3">

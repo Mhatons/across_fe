@@ -14,7 +14,7 @@ export function Home() {
                 <Header icon={<BridgeIcon />} title="Bridge" />
                 <SendBridgeBar />
                 <ReferalBar />
-                <Modal />
+                {/* <Modal /> */}
             </div>
         </div>
     )

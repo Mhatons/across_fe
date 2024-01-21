@@ -25,7 +25,9 @@ function App() {
           <Nav />
         </div>
         <div className="pt-28 pb-7 ">
-          <Outlet />
+          <div className=" pb-16 ">
+            <Outlet />
+          </div>
           <Footer />
         </div>
       </div>

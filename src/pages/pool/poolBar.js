@@ -25,7 +25,7 @@ export default function PoolBar(props) {
     ]
 
     return (
-        <div className="bg-[#34353B] border border-zinc-700 rounded-xl mb-16 mt-8">
+        <div className="bg-[#34353B] border border-zinc-700 rounded-xl mt-8">
             <div className="w-[91%] m-auto py-6">
                 <section className="flex items-center mb-6">
                     <div onClick={() => setIsAdd(true)} className={`w-[50%]  border-b text-center pb-4 ${isAdd ? "border-white border-b-2 text-white " : "text-zinc-400"} cursor-pointer border-zinc-600`}>Add</div>
