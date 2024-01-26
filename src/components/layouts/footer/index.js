@@ -22,8 +22,8 @@ export default function Footer() {
     ]
     return (
         <div>
-            <div className="flex items-center justify-between text-zinc-400 w-[95%] m-auto">
-                <ul className=" flex justify-between items-center w-[20%] text-md ">
+            <div className=" flex max-mdd:flex-col items-center justify-between text-zinc-400 w-[95%] m-auto">
+                <ul className=" flex justify-between text-center items-center smm:w-[200px] w-[95%] text-md ">
                     {
                         navMenu.map((menu, index) => (
                             <li className="hover:text-zinc-100 cursor-pointer" key={index}>{menu.menuName}</li>

@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/commons/button";
 import { backgroundLinesOne, logo } from "../../assets/images";
 import { ArrowDownIcon, InfoIcon, LogoDummy, OutlinedArrowRight } from "../../assets/icons";
 import CustomSelect from "../../components/commons/select";
 import { useNavigate } from "react-router-dom";
+import { myContext } from "../../MyContext";
 
 export default function PoolBar(props) {
     const [isAdd, setIsAdd] = useState(true)
     const navigate = useNavigate()
+    const { setWalletModal } = useContext(myContext)
 
     const poolDetails = [
         {
@@ -65,10 +67,10 @@ export default function PoolBar(props) {
                         <div className="flex items-center gap-3">
                             <LogoDummy className={`text-4xl ${isAdd ? "text-primGreen" : "text-[#f9d26c]"}`} />
                             <div className="text-white">
-                                Earn 
+                                Earn
                                 <span className={`${isAdd ? "text-primGreen" : "text-[#f9d26c]"}`}> +7.552% </span>
-                                 by staking 
-                                 <span className={`${isAdd ? "text-primGreen" : "text-[#f9d26c]"}`}> ETH-LP </span>
+                                by staking
+                                <span className={`${isAdd ? "text-primGreen" : "text-[#f9d26c]"}`}> ETH-LP </span>
                             </div>
                         </div>
                         <OutlinedArrowRight onClick={() => navigate("/rewards")} className={`text-4xl border rounded-full p-2 cursor-pointer ${isAdd ? "text-primGreen border-primGreen" : "border-[#f9d26c] text-[#f9d26c]"} `} />
@@ -76,7 +78,7 @@ export default function PoolBar(props) {
                 </div>
 
                 <button
-                    // onClick={onClick}
+                    onClick={() => setWalletModal(true)}
                     className=" text-lg rounded-full w-full hover:bg-[#5EC8B1] px-6 text-[#2F3035] bg-primGreen font-semibold py-5">
                     {"Connect wallet"}
                 </button>

@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../../commons/button";
 import { IoMdMenu } from "react-icons/io";
 import { logo } from "../../../assets/images";
 import { useNavigate } from "react-router-dom/dist";
+import { myContext } from "../../../MyContext";
+import ConnectWalletModal from "../../../utils/connectModal";
+import CustomDrawer from "../../../utils/drawer";
 
 export default function Nav() {
     const navigate = useNavigate();
+    const { setWalletModal, setDrawerOpen } = useContext(myContext)
 
     const navMenu = [
         {
@@ -48,10 +52,11 @@ export default function Nav() {
                     </ul>
                 </div>
                 <div className=" flex gap-4 items-center">
-                    <Button text="Connect" />
-                    <IoMdMenu className=" border rounded-full p-2 text-[39px] text-zinc-400 border-zinc-400 cursor-pointer hover:border-zinc-100 hover:text-zinc-100" />
+                    <Button onClick={() => setWalletModal(true) } text="Connect" />
+                    <IoMdMenu onClick={() => setDrawerOpen({right: true})} className=" border rounded-full p-2 text-[39px] text-zinc-400 border-zinc-400 cursor-pointer hover:border-zinc-100 hover:text-zinc-100" />
                 </div>
             </div>
+            <CustomDrawer menu={navMenu} />
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { Home } from './pages/home';
 import Footer from './components/layouts/footer';
 import Nav from './components/layouts/nav';
 import { useState } from 'react';
+import ConnectWalletModal from './utils/connectModal';
 
 function App() {
   const [showNavBorder, setShowNavBorder] = useState(false)
@@ -24,12 +25,14 @@ function App() {
         <div className={` ${showNavBorder && "border-b"} z-10 fixed w-full bg-[#2d2e33da] border-zinc-600`}>
           <Nav />
         </div>
-        <div className="pt-28 pb-7 ">
+        <div className=" smm:pt-28 pt-24 pb-7 ">
           <div className=" pb-16 ">
             <Outlet />
           </div>
           <Footer />
         </div>
+        
+        <ConnectWalletModal />
       </div>
     </div>
   );

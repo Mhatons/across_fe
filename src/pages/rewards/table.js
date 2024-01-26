@@ -190,7 +190,7 @@ export default function BasicTable() {
                             isLoading ? (
                                 row.map((row, index) => (
                                     <TableRow key={index}>
-                                        <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#9BA8B0", paddingTop: "2em", paddingBottom: "2em" }}>
+                                        <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#9BA8B0", paddingTop: "1.3em", paddingBottom: "1.3em" }}>
                                             <div className='flex items-center gap-6'>
                                                 <img src={row.pool.icon} alt='' className='w-[30px]' />
                                                 <div>
@@ -208,7 +208,7 @@ export default function BasicTable() {
                                         <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#9BA8B0", paddingTop: "2em", paddingBottom: "2em" }}>
                                             <div className=''>
                                                 <div>{row.apy.sum}</div>
-                                                <div className=' ps-2 ms-2 relative '>
+                                                <div className=' ps-[6px] mt-1 relative '>
                                                     <div className='flex items-center gap-2'>
                                                         <div className='border-t border-zinc-600 w-2'></div>
                                                         <div>Pool: {row.apy.pool}</div>

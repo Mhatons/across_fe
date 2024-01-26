@@ -9,6 +9,8 @@ module.exports = {
         primTextColor: "zinc-300"
       },
       screens: {
+        mdd: "576px",
+        smm: "428px"
       },
     },
   },
