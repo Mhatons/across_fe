@@ -35,7 +35,7 @@ export const styleHeader = {
 export default function ScanWalletModal() {
     const { openScanWalletModal, setScanWalletModal } = useContext(myContext)
     const [isCurrent, setCurrent] = useState(true)
-    const handleClose = () => setScanWalletModal(false);
+    const handleClose = () => {setScanWalletModal(false); setCurrent(true)};
 
     return (
         <Modal
