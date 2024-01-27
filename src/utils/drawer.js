@@ -1,14 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { CloseButton, InfoIcon } from '../assets/icons';
-import { MenuItem } from '@mui/material';
+import { CloseButton } from '../assets/icons';
 import { useNavigate } from 'react-router-dom';
 import { myContext } from '../MyContext';
 
@@ -42,10 +39,6 @@ export default function CustomDrawer(props) {
             onClick: "/transactions",
         },
     ]
-
-    // const [state, setState] = useState({
-    //     right: false,
-    // });
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (

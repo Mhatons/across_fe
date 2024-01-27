@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
-import Button from "../../components/commons/button";
-import { backgroundLinesOne, logo } from "../../assets/images";
-import { ArrowDownIcon, InfoIcon, LogoDummy, OutlinedArrowRight } from "../../assets/icons";
+import {  logo } from "../../assets/images";
+import { LogoDummy, OutlinedArrowRight } from "../../assets/icons";
 import CustomSelect from "../../components/commons/select";
 import { useNavigate } from "react-router-dom";
 import { myContext } from "../../MyContext";
 
-export default function PoolBar(props) {
+export default function PoolBar() {
     const [isAdd, setIsAdd] = useState(true)
     const navigate = useNavigate()
     const { setWalletModal } = useContext(myContext)

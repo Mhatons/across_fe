@@ -2,7 +2,7 @@ import logoImage from './collections_CK3ZueicxPvf9CwxoyQB_icon_A6j8wuUsTCdcevV7m
 import cloudlinesOne from './cloud-staking-728bb740.svg';
 import cloudlinesTwo from './op-cloud-rebate-f23b7655.svg';
 import optimismLogo from './optimism-ethereum-op-logo.png';
-import eth from "./ethereum-blue.svg";
+import eth from "./ethereum-logo-4706363e.svg";
 import usd from "./usd-coin-usdc-logo.png";
 import usdt from "./tether-usdt-logo.png";
 import dai from "./multi-collateral-dai-dai-logo.png";
@@ -15,6 +15,10 @@ import polygon from "./polygon.webp";
 import ZkSync from "./zkSync.png";
 import coinbase from "./coinbase.svg";
 import walletconnect from "./WalletConnect.png";
+import coinbaseApp from "./coinbaseApp.svg";
+import qrCode from "./qrCode.svg";
+import qrCode2 from "./qrcode2.svg";
+import ledger from "./Screenshot__122_-removebg-preview.png"
 
 export const logo = logoImage;
 export const backgroundLinesOne = cloudlinesOne;
@@ -32,4 +36,8 @@ export const baseLogo = base;
 export const polygonLogo = polygon;
 export const ZkSyncLogo = ZkSync;
 export const coinbaseLogo = coinbase;
+export const coinbaseAppLogo = coinbaseApp;
 export const walletConnecLogo = walletconnect;
+export const qrCodeTemplate = qrCode;
+export const qrCodeTemplate2 = qrCode2;
+export const ledgerIcon = ledger;

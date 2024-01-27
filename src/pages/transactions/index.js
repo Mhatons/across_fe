@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Header from "../../components/layouts/header";
-import { BridgeIcon } from "../../assets/icons";
-import ReferalBar from "../home/referalBar";
+import React, { useState } from "react";
 import Header2 from "../../components/layouts/header/header2";
 import CustomTable from "../../utils/table";
 import Button from "../../components/commons/button";

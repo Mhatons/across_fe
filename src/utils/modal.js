@@ -13,7 +13,6 @@ export const style = {
     left: '50%',
     height: "400px",
     transform: 'translate(-50%, -50%)',
-    // width: 400,
     borderRadius: "15px",
     marginTop: "2.5em",
     bgcolor: '#202024',

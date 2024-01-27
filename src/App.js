@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
-import { Home } from './pages/home';
 import Footer from './components/layouts/footer';
 import Nav from './components/layouts/nav';
 import { useState } from 'react';
@@ -15,7 +14,6 @@ function App() {
       setShowNavBorder(true)
     }
     else {
-      // prompt("below 350")
       setShowNavBorder(false)
     }
   }

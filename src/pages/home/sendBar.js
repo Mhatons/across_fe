@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { ArrowDownIcon, ArrowSwapIcon, CardBoardIcon, InfoIcon } from "../../assets/icons";
+import { ArrowDownIcon, ArrowSwapIcon, InfoIcon } from "../../assets/icons";
 import CustomModal from "../../utils/modal";
 import { myContext } from "../../MyContext";
 import { chains, nonSupportedWallets, wallets } from "../../utils/wallets";
 import { Box, Typography } from "@mui/material";
-import { arbitrumLogo, ethLogo, optimisonLogo } from "../../assets/images";
+import { arbitrumLogo, ethLogo } from "../../assets/images";
 
 export default function SendBridgeBar() {
     const {

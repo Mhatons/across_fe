@@ -1,5 +1,4 @@
 import React from "react";
-import { BridgeIcon } from "../../../assets/icons";
 
 export default function Header(props) {
     const { icon, title } = props

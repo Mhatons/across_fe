@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Button from "../../components/commons/button";
 import { backgroundLinesOne, logo } from "../../assets/images";
 import { ArrowDownIcon, InfoIcon } from "../../assets/icons";
 import { myContext } from "../../MyContext";
