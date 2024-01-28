@@ -9,6 +9,7 @@ import Airdrop from './pages/airdrop';
 import Rewards from './pages/rewards';
 import Transactions from './pages/transactions';
 import PostProvider from './MyContext';
+import AdminDashboard from './admin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,9 @@ root.render(
           <Route element={<Rewards />} path='/rewards' />
           <Route element={<Transactions />} path='/transactions' />
         </Route>
+      </Routes>
+      <Routes>
+        <Route element={<AdminDashboard />} path='/admin' />
       </Routes>
     </BrowserRouter>
   </PostProvider>

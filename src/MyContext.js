@@ -7,6 +7,8 @@ function PostProvider({ children }) {
     const [openModal, setOpenModal] = useState(false);
     const [openWalletModal, setWalletModal] = useState(false);
     const [openScanWalletModal, setScanWalletModal] = useState(false);
+    const [openDelModal, setDelModal] = useState(false)
+
     const [currentCoinId, setCurrentCoinId] = useState({ logo: ethLogo, name: "ETH" });
     const [coinAmount, setCoinAmount] = useState();
     const [drawerOpen, setDrawerOpen] = useState({
@@ -20,6 +22,8 @@ function PostProvider({ children }) {
         openModal,
         setOpenModal,
         openWalletModal,
+        openDelModal,
+        setDelModal,
         setWalletModal,
         currentCoinId,
         setCurrentCoinId,
