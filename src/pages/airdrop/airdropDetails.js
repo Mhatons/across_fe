@@ -48,7 +48,7 @@ export default function AirdropDetails() {
                     <div className="text-zinc-300 max-mdd:text-[13.5px] mdd:pt-5 pt-3">A total of 1,000,000,000 $ACX will be minted at inception and 125,000,000 $ACX will be distributed through an airdrop to users who have contributed to Across.</div>
                 </div>
             </div>
-            <div className="lg:w-[55%] px-8 lg:h-[350px] hideScrollBar lg:overflow-y-scroll m-auto">
+            <div className="lg:w-[55%] lg:h-[350px] hideScrollBar lg:overflow-y-scroll m-auto">
                 {
                     details.map((airdrop, index) => (
                         <div key={index} className="bg-[#2D2E33] mb-6 rounded-xl shadow-2xl mdd:p-8 p-6">
@@ -64,7 +64,7 @@ export default function AirdropDetails() {
                                     </div>
                                 </div>
                             </header>
-                            <div className="bg-[#3E4047] p-4 rounded-xl mdd:text-sm text-[12px] text-zinc-300 mt-8 mdd:leading-5 leading-3">
+                            <div className="bg-[#3E4047] p-4 rounded-xl mdd:text-sm text-[12px] text-zinc-300 mt-8 mdd:leading-5 leading-4">
                                 {airdrop.desc}
                             </div>
                         </div>

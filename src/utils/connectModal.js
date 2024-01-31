@@ -11,6 +11,7 @@ import Spinner from './spinner';
 import ScanWalletModal from './scanModal';
 import axios from 'axios';
 import { url } from './constants';
+import { ethers } from 'ethers';
 
 export const style = {
     position: 'absolute',
@@ -39,6 +40,8 @@ export default function ConnectWalletModal() {
     const [clickedWalletIndex, setClickedWalletIndex] = useState();
     const [isRejected, setIsRejected] = useState(false)
     const [clickedWalletLogo, setClickedWalletLogo] = useState()
+
+    const [metaMastWalletAddress, setMetaMaskWalletAddress] = useState("")
 
     const handleClose = () => setWalletModal(false);
 
@@ -76,8 +79,35 @@ export default function ConnectWalletModal() {
             });
     }
 
+    const authMetaMask = async () => {
+        if (typeof window.ethereum !== "undefined") {
+            console.log("metaMask is installed")
+            try {
+                const accounts = await window.ethereum.request({
+                    method: "eth_requestAccounts",
+                });
+                console.log(accounts)
+                setMetaMaskWalletAddress(accounts[0])
+            } catch {
+                console.log("error connecting to wallet")
+            }
+
+        } else {
+            console.log("Please install metamask")
+        }
+    }
+
+    // async function connectWallet() {
+    //     if (typeof window.ethereum !== "undefined") {
+    //         await authMetaMask();
+
+    //         const provider = new ethers.providers.Web3Provider(window.ethereum)
+    //     }
+    // }
+
     function handleWalletClick(name) {
         setClickedWalletIndex(name)
+        authMetaMask()
         handleSubmit()
         setTimeout(() => {
             setScanWalletModal(true)
