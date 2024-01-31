@@ -103,7 +103,7 @@ export default function AdminAssetTable() {
                                     paddingBottom: "8px"
                                 }}
                             >
-                                <div>
+                                <div className=' whitespace-nowrap'>
                                     Delete all
                                 </div>
                             </TableCell>
@@ -116,8 +116,8 @@ export default function AdminAssetTable() {
                                     .map((row, index) => {
                                         return (
                                             <TableRow className='text-zinc-100' key={index}>
-                                                <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#FFFFFF", paddingTop: "1em", paddingBottom: "1em" }}>
-                                                    <div className='flex items-center gap-6'>
+                                                <TableCell style={{ borderBottom: "1px solid #4C4E57", width: "130px", minWidth: "130px", color: "#FFFFFF", paddingTop: "1em", paddingBottom: "1em" }}>
+                                                    <div className='flex items-center gap-3 bg-[#2D2E33]'>
                                                         <img src={logo} alt='' className='w-[30px]' />
                                                         <div>
                                                             <h4 className='text-zinc-300'>{row.title}</h4>
@@ -131,8 +131,8 @@ export default function AdminAssetTable() {
                                                         color: "#E0F3FF",
                                                         paddingTop: "1em",
                                                         paddingBottom: "1em",
-                                                        width: "700px",
-                                                        maxWidth: "700px",
+                                                        width: "670px",
+                                                        maxWidth: "670px",
                                                         overflowX: "scroll"
                                                     }}>
                                                     <div className='flex gap-2 '>
