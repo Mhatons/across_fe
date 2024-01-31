@@ -1,6 +1,6 @@
 import React from "react";
-import AdminAssetTable from "./components/assetTable";
-import Header from "../components/layouts/header";
+import AdminAssetTable from "../components/assetTable";
+import Header from "../../components/layouts/header";
 import { RiAdminLine } from "react-icons/ri";
 
 export default function AdminDashboard() {

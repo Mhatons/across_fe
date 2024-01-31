@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { CloseButton } from '../assets/icons';
 import { myContext } from '../MyContext';
-import { coinbaseAppLogo, coinbaseLogo, ledgerIcon, qrCodeTemplate, qrCodeTemplate2, walletConnecLogo } from '../assets/images';
+import { coinbaseAppLogo, coinbaseLogo, ledgerIcon, qrCodeTemplate, qrCodeTemplate2 } from '../assets/images';
 import { AiOutlineQrcode } from "react-icons/ai";
 import { FaLaptop } from "react-icons/fa";
 import { MdOutlineMoreHoriz } from "react-icons/md";
@@ -65,7 +65,6 @@ export default function ScanWalletModal() {
                                         <div className='w-[30px]'>
                                             <img src={coinbaseLogo} alt='' className='w-full' />
                                         </div>
-                                        <walletConnecLogo className='text-[#664600] text-[20px]' />
                                         <div className='text-[15px] whitespace-nowrap'>
                                             <div className='text-[#71530F], font-semibold'>Coinbase Wallet app</div>
                                             <div>Connect with your self-custody wallet</div>
@@ -75,7 +74,6 @@ export default function ScanWalletModal() {
                                         <div className='w-[30px]'>
                                             <img src={coinbaseAppLogo} alt='' className='w-full' />
                                         </div>
-                                        <walletConnecLogo className='text-[#664600] text-[20px]' />
                                         <div className='text-[15px] whitespace-nowrap'>
                                             <div className='text-[#71530F], font-semibold'>Coinbase Wallet app</div>
                                             <div>Connect with your Coinbase account</div>

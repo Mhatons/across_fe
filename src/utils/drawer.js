@@ -9,14 +9,34 @@ import { CloseButton } from '../assets/icons';
 import { useNavigate } from 'react-router-dom';
 import { myContext } from '../MyContext';
 
-export default function CustomDrawer(props) {
+export default function CustomDrawer() {
     const navigate = useNavigate()
     const { setDrawerOpen, drawerOpen, setWalletModal } = useContext(myContext)
+
+    const anchorWidth = {
+        width: '450px', // Default width for larger screens
+      
+        '@media (max-width: 463px)': {
+          width: '400px',
+        },
+        '@media (max-width: 399px)': {
+          width: '350px',
+        },
+        '@media (max-width: 350px)': {
+          width: '300px',
+        },
+        '@media (max-width: 301px)': {
+          width: '260px',
+        },
+        '@media (max-width: 250px)': {
+          width: '100%',
+        },
+      };
 
     const menu = [
         {
             name: "Bridge",
-            onClick: "/",
+            onClick: "/bridge",
         },
         {
             name: "Pool",
@@ -55,7 +75,7 @@ export default function CustomDrawer(props) {
     const list = (anchor) => (
         <Box
             className="bg-[#34353A] h-screen"
-            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 450 }}
+            sx={anchorWidth}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
@@ -63,7 +83,7 @@ export default function CustomDrawer(props) {
             <Box className="flex items-center justify-between bg-[#6CF9D8] py-6 px-6 ">
                 <button
                     onClick={() => setWalletModal(true)}
-                    className=" rounded-full px-12 text-white bg-[#34353A] hover:bg-[#3D615C] duration-500 font-semibold py-5"
+                    className=" rounded-full mdd:px-12 px-6 text-white bg-[#34353A] hover:bg-[#3D615C] duration-500 font-semibold max-mdd:h-[40px] mdd:py-5 py-2"
                 >
                     {"Connect Wallet"}
                 </button>

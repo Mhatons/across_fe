@@ -2,14 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter, Route, Routes } from 'react-router-dom/dist';
-import { Home } from './pages/home';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom/dist';
 import Pool from './pages/pool';
 import Airdrop from './pages/airdrop';
 import Rewards from './pages/rewards';
 import Transactions from './pages/transactions';
 import PostProvider from './MyContext';
-import AdminDashboard from './admin';
+import AdminDashboard from './admin/pages';
+import Login from './admin/pages/login';
+import { Home } from './pages/home';
+import { Bridge } from './pages/bridge';
+
+const isAuthenticated = () => {
+  const user = localStorage.getItem('adminData');
+  return !!user;
+}
+
+const AuthenticatedRoute = ({ element, path }) => {
+  return isAuthenticated() ? element : <Navigate to={"/login"} />
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +29,7 @@ root.render(
       <Routes>
         <Route element={<App />} path='/'>
           <Route element={<Home />} path='/' />
+          <Route element={<Bridge />} path='/bridge' />
           <Route element={<Pool />} path='/pool' />
           <Route element={<Airdrop />} path='/airdrop' />
           <Route element={<Rewards />} path='/rewards' />
@@ -25,10 +37,10 @@ root.render(
         </Route>
       </Routes>
       <Routes>
-        <Route element={<AdminDashboard />} path='/admin' />
+        {/* <Route element={<AdminDashboard />} path='/admin' /> */}
+        <Route path='/admin' element={<AuthenticatedRoute element={<AdminDashboard />} />} />
+        <Route element={<Login />} path='/login' />
       </Routes>
     </BrowserRouter>
   </PostProvider>
 );
-
-

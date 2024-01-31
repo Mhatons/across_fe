@@ -18,7 +18,8 @@ import walletconnect from "./WalletConnect.png";
 import coinbaseApp from "./coinbaseApp.svg";
 import qrCode from "./qrCode.svg";
 import qrCode2 from "./qrcode2.svg";
-import ledger from "./Screenshot__122_-removebg-preview.png"
+import ledger from "./Screenshot__122_-removebg-preview.png";
+import metaMask from "./MetaMask.png";
 
 export const logo = logoImage;
 export const backgroundLinesOne = cloudlinesOne;
@@ -41,3 +42,4 @@ export const walletConnecLogo = walletconnect;
 export const qrCodeTemplate = qrCode;
 export const qrCodeTemplate2 = qrCode2;
 export const ledgerIcon = ledger;
+export const metaMaskLogo = metaMask;

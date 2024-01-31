@@ -6,3 +6,12 @@
     background-size: cover; background-color: red;
 }
 
+.homeBtn {
+    background: linear-gradient(to right, #C4FFF1, #b5e6db, #5EC8B1, #5EC8B1);
+}
+.homeText {
+    background: linear-gradient(to right, #edf9f6, #b5e6db, #6CF9D8, #6CF9D8);
+    -webkit-background-clip: text;
+    color: transparent !important;
+}
+

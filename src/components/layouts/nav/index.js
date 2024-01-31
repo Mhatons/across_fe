@@ -14,7 +14,7 @@ export default function Nav() {
     const navMenu = [
         {
             menuName: "Bridge",
-            onClick: "/",
+            onClick: "/bridge",
         },
         {
             menuName: "Pool",
@@ -35,7 +35,7 @@ export default function Nav() {
             <div className=" flex justify-between w-[95%] items-center m-auto h-[70px]">
                 <div className=" flex w-[40%] justify-between items-center">
                     <div>
-                        <img src={logo} alt="Logo" className="w-[33px]" />
+                        <img onClick={() => navigate("/")} src={logo} alt="Logo" className="w-[33px] cursor-pointer" />
                     </div>
                     <ul className=" max-lg:hidden flex justify-between w-[80%] text-zinc-300 ">
                         {
@@ -56,7 +56,7 @@ export default function Nav() {
                     <IoMdMenu onClick={() => setDrawerOpen({right: true})} className=" border rounded-full p-2 text-[39px] text-zinc-400 border-zinc-400 cursor-pointer hover:border-zinc-100 hover:text-zinc-100" />
                 </div>
             </div>
-            <CustomDrawer menu={navMenu} />
+            <CustomDrawer />
         </div>
     )
 }

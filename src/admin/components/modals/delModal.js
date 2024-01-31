@@ -11,7 +11,6 @@ export const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    height: "230px",
     transform: 'translate(-50%, -50%)',
     borderRadius: "15px",
     marginTop: "2.5em",
@@ -31,7 +30,7 @@ export const styleHeader = {
 }
 
 export default function DeleteModal(props) {
-    const { title, children } = props;
+    const { title, children, onClick } = props;
     const { openDelModal, setDelModal } = useContext(myContext)
     const handleClose = () => setDelModal(false);
 
@@ -58,9 +57,9 @@ export default function DeleteModal(props) {
                     </Box>
                     <Box className=" py-6 px-8 text-zinc-400">
                         {children}
-                        <div className='flex gap-4 justify-end py-6'>
+                        <div className='flex gap-4 justify-end pt-6'>
                             <button onClick={handleClose} className='bg-green-500 text-white px-5 py-2 text-sm rounded-md'>Cancel</button>
-                            <button className='bg-red-500 text-white px-5 py-2 text-sm rounded-md'>Delete</button>
+                            <button onClick={onClick} className='bg-red-500 text-white px-5 py-2 text-sm rounded-md'>Delete</button>
                         </div>
                     </Box>
                 </Box>

