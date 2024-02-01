@@ -5,7 +5,7 @@ import PoolBar from "./poolBar";
 
 export default function Pool() {
     return (
-        <div className=" w-[47%] m-auto ">
+        <div className=" sm:w-[580px] w-[90%] m-auto m-auto ">
             <Header icon={<BridgeIcon />} title="Pool" />
             <PoolBar />
         </div>

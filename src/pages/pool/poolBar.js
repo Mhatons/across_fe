@@ -34,10 +34,10 @@ export default function PoolBar() {
                 </section>
                 <CustomSelect coin="ETH Pool" />
 
-                <section className="pt-6 flex justify-between items-center">
+                <section className="pt-6 mdd:flex justify-between items-center">
                     {
                         poolDetails.map((pool, index) => (
-                            <div key={index} className="border border-zinc-700 w-[30%] rounded-xl px-4 py-3 ">
+                            <div key={index} className="border border-zinc-700 mdd:w-[30%] max-mdd:mb-3 max-mdd:text-sm rounded-xl px-4 py-3 ">
                                 <header className="text-zinc-400">{pool.title}</header>
                                 <p className="text-zinc-300">{pool.sum}</p>
                             </div>
