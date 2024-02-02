@@ -33,10 +33,10 @@ export default function SendBridgeBar() {
                     <p className="text-zinc-400 text-sm mb-3">Send</p>
                     <div className=" mdd:flex justify-between items-center ">
                         <div className="border bg-[#2D2E33] flex items-center justify-between mdd:w-[67%] relative rounded-full border-zinc-600 max-mdd:mb-2 mdd:p-4 p-3">
-                            <input 
-                            src=""
-                            onChange={(e) => setCoinAmount(e.target.value)}
-                            className="bg-transparent border-none outline-none text-zinc-300 text-md" placeholder="Enter amount" />
+                            <input
+                                src=""
+                                onChange={(e) => setCoinAmount(e.target.value)}
+                                className="bg-transparent border-none outline-none text-zinc-300 text-md" placeholder="Enter amount" />
                             <button
                                 // onClick={onClick}
                                 className="border max-smm:absolute right-3 text-[10px] tracking-widest rounded-2xl px-3 text-zinc-300 border-zinc-600 font-semibold py-[4px]"
@@ -85,10 +85,17 @@ export default function SendBridgeBar() {
                         <span className=" float-right text-sm text-zinc-400">Change account</span>
                     </section>
 
-                    <div onClick={() => setSwapCoin(!swapCoin)} className=" absolute top-[48%] right-[49.2%] hover:border-zinc-200 z-10 bg-[#34353B] hover:text-zinc-200 cursor-pointer border-zinc-500 border rounded-full p-[12px] text-zinc-500">
+                    {/* <div onClick={() => setSwapCoin(!swapCoin)} className=" absolute top-[48%] mdd:right-[49.2%] hover:border-zinc-200 z-10 bg-[#34353B] hover:text-zinc-200 cursor-pointer border-zinc-500 border rounded-full p-[12px] text-zinc-500">
                         <ArrowSwapIcon />
+                    </div> */}
+                    <div className="absolute top-[48%] flex justify-center right-0 left-0">
+                        <div onClick={() => setSwapCoin(!swapCoin)} className=" hover:border-zinc-200 z-10 bg-[#34353B] hover:text-zinc-200 cursor-pointer border-zinc-500 border rounded-full p-[12px] text-zinc-500">
+                            <ArrowSwapIcon />
+                        </div>
                     </div>
-                    <div className="border-zinc-600 border-r h-14 absolute top-[44%] right-[53%] w-1"></div>
+                    <div className="absolute top-[44%] right-0 left-0 flex justify-center">
+                        <div className="border-zinc-600 border-r h-14 right-[53%] w-1"></div>
+                    </div>
                 </div>
 
                 {

@@ -138,7 +138,7 @@ export default function ConnectWalletModal() {
             }}
         >
             <Fade in={openWalletModal}>
-                <Box className=" md:w-[800px] md:h-[440px] smm:h-[360px] h-[450px]  smm:top-[43%] top-[69%] w-full max-md:overflow-y-scroll m-auto flex max-md:flex-col-reverse" sx={style}>
+                <Box className=" md:w-[800px] md:h-[400px] max-h-[600px] md:top-[43%] smm:top-[50%] top-[55%] w-full m-auto flex max-md:flex-col-reverse" sx={style}>
                     <Box className="bg-[#34353B] md:w-[39%] w-[95%] max-md:m-auto max-md:mt-6">
                         <div className='md:w-[70%] w-[90%] max-md:text-center m-auto md:pt-16'>
                             <img src={logo} alt='logo' className='w-[17px] max-md:hidden' />
@@ -151,7 +151,7 @@ export default function ConnectWalletModal() {
                                 <InfoFilledIcon className='text-2xl' />
                             </div>
 
-                            <div className='relative md:mt-24 mt-4 mb-4 md:w-[90%] w-[130px] m-auto'>
+                            <div className='relative md:mt-16 mt-4 mb-4 md:w-[90%] w-[130px] m-auto'>
                                 <div className=' flex justify-between items-center'>
                                     <div className='h-3 w-3 z-10 bg-[#6370E5] rounded-full border-[#1A1D26] border-2'></div>
                                     <div className='h-2  top-[0px] w-2 z-10 bg-[#1A1D26] rounded-full'></div>
@@ -173,7 +173,7 @@ export default function ConnectWalletModal() {
 
                     <Box className="md:w-[61%] relative">
                         <Box sx={styleHeader}>
-                            <Typography className='text-white ps-2'> {!isRejected ? "Available Wallets (2)" : "Connection Rejected"} </Typography>
+                            <Typography className='text-white ps-2'> {!isRejected ? "Available Wallets (3)" : "Connection Rejected"} </Typography>
                             <CloseButton onClick={handleClose} className='text-[32px] shadow-sm cursor-pointer bg-[#34353B] p-1 rounded-full text-zinc-400' />
                         </Box>
                         <Box className="">
@@ -184,7 +184,7 @@ export default function ConnectWalletModal() {
                                             <div className='text-[#DCEFFA] md:grid flex items-start grid-cols-2 md:gap-2 gap-6 pt-4'>
                                                 {
                                                     avalWallets.map((wallet, index) => (
-                                                        <div key={index} onClick={(e) => { handleWalletClick(wallet.name); setClickedWallet({ ...clickedWallet, logo: wallet.logo, name: wallet.name }) }} className='md:border duration-500 max-md:text-center rounded-2xl hover:bg-[#34353B] cursor-pointer md:p-4 border-zinc-700 md:flex items-center gap-2'>
+                                                        <div key={index} onClick={(e) => { handleWalletClick(wallet.name); setClickedWallet({ ...clickedWallet, logo: wallet.logo, name: wallet.name }) }} className='md:border duration-500 max-md:text-center rounded-2xl md:hover:bg-[#34353B] cursor-pointer md:p-4 border-zinc-700 md:flex items-center gap-2'>
                                                             <div className='border p-2 md:h-[3.1em] h-[4em] flex items-center justify-center max-md:mb-2 rounded-2xl border-zinc-600 md:w-[50px] w-[4em]'>
                                                                 {
                                                                     clickedWalletIndex === wallet.name ? (
@@ -212,7 +212,7 @@ export default function ConnectWalletModal() {
                                 }
                                 {
                                     isRejected && (
-                                        <div>
+                                        <div className='w-full'>
                                             <div className='flex gap-12 bg-[#FFEFCC] max-md:min-w-[400px] rounded-3xl p-4 mt-4'>
                                                 <div className='flex items-center relative '>
                                                     <div className='w-[40px] border flex justify-center items-center rounded-xl bg-[#EBEBED] border-[#FFAF00] h-[40px]'>
@@ -223,12 +223,12 @@ export default function ConnectWalletModal() {
                                                     </div>
                                                 </div>
                                                 <div className='text-[12px] text-[#6370E5]'>
-                                                    <div className='text-[#71530F] text-[16px]'>Connection Rejected!</div>
-                                                    <div onClick={handleManualConnect} className=' cursor-pointer'>Click here to connect manually</div>
-                                                    {/* <div>Click here to try again</div> */}
+                                                    <div className='text-[#71530F] text-[16px]'>Connection Failed!</div>
+                                                    {/* <div onClick={backToWallets} className=' cursor-pointer'>Click here to connect manually</div> */}
+                                                    <div onClick={backToWallets} className=' cursor-pointer'>Click here to try again</div>
                                                 </div>
                                             </div>
-                                            {/* <div className='mt-12 flex justify-center'>
+                                            <div className='mt-12 flex justify-center w-full items-center'>
                                                 <div>
                                                     <div className='text-[12px] text-zinc-300'>Having issues connecting wallet?</div>
                                                     <button
@@ -246,7 +246,7 @@ export default function ConnectWalletModal() {
                                                         }
                                                     </button>
                                                 </div>
-                                            </div> */}
+                                            </div>
                                             <div onClick={backToWallets} className=' bottom-8 max-md:mt-6 max-md:w-[200px] md:absolute flex md:justify-center items-center w-full '>
                                                 <button className='bg-[#FFFFFF]  text-[13px] px-4 font-bold text-[#33394B] py-1 rounded-full'>
                                                     Back to wallets
@@ -258,13 +258,13 @@ export default function ConnectWalletModal() {
                             </div>
                             {/* <ScanWalletModal /> */}
                             <PhraseWalletModal />
-                            {
+                            {/* {
                                 isLoading && (
                                     <div className='absolute top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-[#2d2e33a5]'>
                                         <img src={spinner} alt='Loading...' className='w-[40px]' />
                                     </div>
                                 )
-                            }
+                            } */}
                         </Box>
                     </Box>
                 </Box>

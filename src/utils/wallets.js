@@ -72,3 +72,38 @@ export const chains = [
         name: "ZkSync Era"
     },
 ]
+
+export const poolCoins = [
+    {
+        logo: ethLogo,
+        name: "ETH"
+    },
+    // {
+    //     logo: ethLogo,
+    //     name: "WETH"
+    // },
+    {
+        logo: usdLogo,
+        name: "USDC"
+    },
+    {
+        logo: usdtLogo,
+        name: "USDT"
+    },
+    {
+        logo: daiLogo,
+        name: "DAI"
+    },
+    {
+        logo: wbtcLogo,
+        name: "WBTC"
+    },
+    {
+        logo: logo,
+        name: "ACX"
+    },
+    {
+        logo: snxLogo,
+        name: "SNX"
+    },
+]
