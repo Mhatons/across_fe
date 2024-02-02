@@ -22,7 +22,7 @@ export default function Footer() {
     ]
     return (
         <div>
-            <div className=" flex max-mdd:flex-col items-center justify-between text-zinc-400 w-[95%] m-auto">
+            <div className=" flex max-mdd:flex-col items-center justify-between text-zinc-400 md:w-[95%] w-[80%] m-auto">
                 <ul className=" flex justify-between text-center items-center smm:w-[200px] w-[95%] text-md ">
                     {
                         navMenu.map((menu, index) => (

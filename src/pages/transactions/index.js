@@ -16,7 +16,7 @@ export default function Transactions() {
     return (
         <div className=" w-[90%] m-auto">
             <Header2 title="Transactions" />
-            <div className=" border-b my-8 flex justify-between border-zinc-700 items-center gap-3">
+            <div className=" border-b my-8 flex max-w-[100%] overflow-x-scroll justify-between border-zinc-700 items-center gap-3">
                 <div className=" text-zinc-300 flex gap-4 ">
                     <p onClick={() => setIsCurrent(false)} className={`${!isCurrent && "border-b-2 text-white"} pb-3 px-4 cursor-pointer`}>Personal</p>
                     <p onClick={() => {setIsCurrent(true); toggleLoader()}} className={`${isCurrent && "border-b-2 text-white"} pb-3 px-4 cursor-pointer`}>All</p>
