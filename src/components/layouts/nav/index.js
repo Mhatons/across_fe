@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Button from "../../commons/button";
 import { IoMdMenu } from "react-icons/io";
-import { logo, walletConnecLogo } from "../../../assets/images";
+import { logo, newLogo, walletConnecLogo } from "../../../assets/images";
 import { useNavigate } from "react-router-dom/dist";
 import { myContext } from "../../../MyContext";
 import ConnectWalletModal from "../../../utils/connectModal";
@@ -35,7 +35,7 @@ export default function Nav() {
             <div className=" flex justify-between w-[95%] items-center m-auto h-[70px]">
                 <div className=" flex w-[40%] justify-between items-center">
                     <div>
-                        <img onClick={() => navigate("/")} src={walletConnecLogo} alt="Logo" className="w-[33px] cursor-pointer" />
+                        <img onClick={() => navigate("/")} src={newLogo} alt="Logo" className="w-[33px] cursor-pointer" />
                     </div>
                     <ul className=" max-lg:hidden flex justify-between w-[80%] text-zinc-300 ">
                         {

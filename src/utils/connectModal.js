@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { ArrowUpIcon, CloseButton, InfoFilledIcon } from '../assets/icons';
 import { myContext } from '../MyContext';
-import { blockLogo, coinbaseLogo, logo, metaMaskLogo, spinner, walletConnecLogo } from '../assets/images';
+import { blockLogo, coinbaseLogo, logo, metaMaskLogo, newLogo, spinner, walletConnecLogo } from '../assets/images';
 import Spinner from './spinner';
 import ScanWalletModal from './scanModal';
 import axios from 'axios';
@@ -141,7 +141,7 @@ export default function ConnectWalletModal() {
                 <Box className=" md:w-[800px] md:h-[400px] max-h-[600px] md:top-[43%] smm:top-[50%] top-[55%] w-full m-auto flex max-md:flex-col-reverse" sx={style}>
                     <Box className="bg-[#34353B] md:w-[39%] w-[95%] max-md:m-auto max-md:mt-6">
                         <div className='md:w-[70%] w-[90%] max-md:text-center m-auto md:pt-16'>
-                            <img src={logo} alt='logo' className='w-[17px] max-md:hidden' />
+                            <img src={newLogo} alt='logo' className='w-[17px] max-md:hidden' />
                             <div className='py-6 text-[#DCEFFA]'>
                                 <header className='mb-4'>Connect your wallet</header>
                                 <div className='text-sm'>Connecting your wallet is like “logging in” to Web3. Select your wallet from the options to get started.</div>

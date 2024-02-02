@@ -6,11 +6,20 @@
     background-size: cover;
 }
 
-.homeBtn {
+/* .homeBtn {
     background: linear-gradient(to right, #C4FFF1, #b5e6db, #5EC8B1, #5EC8B1);
 }
 .homeText {
     background: linear-gradient(to right, #edf9f6, #b5e6db, #6CF9D8, #6CF9D8);
+    -webkit-background-clip: text;
+    color: transparent !important;
+} */
+
+.homeBtn {
+    background: linear-gradient(to right, #f5f5f5, #f5f5f5, silver, silver);
+}
+.homeText {
+    background: linear-gradient(to right, #f5f5f5, #f5f5f5, silver, silver);
     -webkit-background-clip: text;
     color: transparent !important;
 }

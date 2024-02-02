@@ -23,6 +23,7 @@ import metaMask from "./MetaMask.png";
 import block from "./Screenshot__126_-removebg-preview.png"
 
 export const logo = logoImage;
+export const newLogo = "https://cryptologos.cc/logos/injective-inj-logo.png"
 export const backgroundLinesOne = cloudlinesOne;
 export const backgroundLinesTwo = cloudlinesTwo;
 export const optimisonLogo = optimismLogo;

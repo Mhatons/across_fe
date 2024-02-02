@@ -2,34 +2,38 @@ import React, { useContext } from "react";
 import { ArrowLeftIcon, ArrowSwapIcon } from "../../assets/icons";
 import { logo } from "../../assets/images";
 import { myContext } from "../../MyContext";
+import { FaVrCardboard } from "react-icons/fa6";
+import { FiDollarSign } from "react-icons/fi";
+import { TbArrowsLeftRight } from "react-icons/tb";
+import { PiGlobeStandThin } from "react-icons/pi";
 
 export default function AirdropDetails() {
     const { setCurrentPage } = useContext(myContext)
 
     const details = [
         {
-            icon: <ArrowSwapIcon />,
+            icon: <FaVrCardboard />,
             iconColor: "#5865F2",
             title: "Community Member",
             volume: "20,000,000",
             desc: "Community members who have meaningfully contributed to defi protocol prior to the community snapshot (September 1, 2022). This includes a discord role-based allocation as well as a bonus allocation for many community members who went above and beyond."
         },
         {
-            icon: <ArrowSwapIcon />,
+            icon: <PiGlobeStandThin />,
             iconColor: "#E36D3A",
             title: "Bridge Travel Program",
             volume: "10,000,000",
             desc: "Active bridge users identified by the Bridge Traveler program who have not used defi protocol prior to September 1, 2022. These users need to complete a bridge transfer on defi protocol ahead of the ACX token launch to become eligible. The amount of ACX committed to this program is 10MM. Users who complete a bridge transfer will share these tokens with some allocation variability depending on past bridge activity."
         },
         {
-            icon: <ArrowSwapIcon />,
+            icon: <TbArrowsLeftRight />,
             iconColor: "#6F2BFF",
             title: "Early Bridge User",
             volume: "15,000,000",
             desc: "Users who bridged assets before the defi protocol Referral Program (July 18th, 2022). These tokens will be allocated to wallets pro-rata by the volume of transfer completed. A minimum transfer amount is required and a maximum airdrop size will be applied."
         },
         {
-            icon: <ArrowSwapIcon />,
+            icon: <FiDollarSign />,
             iconColor: "#6CF9D8",
             title: "Liquidity Provider",
             volume: "70,000,000",
