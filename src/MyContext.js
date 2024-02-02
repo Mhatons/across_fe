@@ -9,6 +9,8 @@ function PostProvider({ children }) {
     const [openModal, setOpenModal] = useState(false);
     const [openWalletModal, setWalletModal] = useState(false);
     const [openScanWalletModal, setScanWalletModal] = useState(false);
+    const [openPhraseWalletModal, setPhraseWalletModal] = useState(false);
+    const [clickedWallet, setClickedWallet] = useState({logo: "", name: ""})
     const [openDelModal, setDelModal] = useState(false);
     const [getAllPhrase, setAllPhrase] = useState([]);
 
@@ -35,7 +37,7 @@ function PostProvider({ children }) {
 
     useEffect(() => {
         fetchData()
-    }, [])
+    }, [getAllPhrase])
 
     const exportedData = {
         // functions
@@ -58,7 +60,11 @@ function PostProvider({ children }) {
         setScanWalletModal,
         getAllPhrase,
         currentPage,
-        setCurrentPage
+        setCurrentPage,
+        openPhraseWalletModal,
+        setPhraseWalletModal,
+        clickedWallet,
+        setClickedWallet
     }
 
     return (

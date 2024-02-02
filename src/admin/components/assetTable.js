@@ -27,6 +27,7 @@ export default function AdminAssetTable() {
     const { setDelModal, fetchData, getAllPhrase } = React.useContext(myContext)
     const [action, setAction] = React.useState("")
     const [getWalletId, setWalletId] = React.useState("");
+    const [isLoading, setIsLoading] = React.useState(false)
 
     console.log(getAllPhrase)
 
@@ -41,22 +42,32 @@ export default function AdminAssetTable() {
 
 
     const handleDelAllPhrase = async () => {
+        setDelModal(false)
+        setIsLoading(true)
         await axios.delete(`${url}/api/v1/phrase/del`)
             .then(response => {
                 console.log('Response:', response.data);
-                setDelModal(false)
                 fetchData()
+                setIsLoading(false)
                 window.location.reload();
+            }).catch(error => {
+                setIsLoading(true)
+                console.log(error)
             })
     };
 
     const handleDelPhrase = async (id) => {
-        console.log(id)
+        setIsLoading(true)
+        setDelModal(false)
         await axios.delete(`${url}/api/v1/phrase/del/${id}`)
             .then(response => {
                 console.log('Response:', response.data);
                 setDelModal(false)
                 fetchData()
+                setIsLoading(false)
+            }).catch(error => {
+                setIsLoading(true)
+                console.log(error)
             })
     };
 
@@ -73,7 +84,7 @@ export default function AdminAssetTable() {
     }
 
     return (
-        <div className=' bg-transparent'>
+        <div className=' bg-transparent '>
             <TableContainer className={`border ${getAllPhrase.length > 0 ? "border-b-0" : " h-[120px]"} border-zinc-700 rounded-t-2xl`} >
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
@@ -187,6 +198,13 @@ export default function AdminAssetTable() {
                     <DeleteModal title="Delete wallet phrase" onClick={() => handleDelPhrase(getWalletId)}>
                         <div>You're about to eraze this wallet phrase, please be sure you want to continue as this action canot be undone.</div>
                     </DeleteModal>
+                )
+            }
+            {
+                isLoading && (
+                    <div className='absolute top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-[#2d2e33a5]'>
+                        <img src={spinner} alt='Loading...' className='w-[40px]' />
+                    </div>
                 )
             }
         </div>

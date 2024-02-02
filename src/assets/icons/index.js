@@ -9,6 +9,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { BsPatchPlus } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
 import { IoMdInformationCircle, IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import { CgArrowTopRight } from "react-icons/cg";
 
 export const TwitterIcon = FaTwitter;
 export const CardBoardIcon = PiGoogleCardboardLogoFill;
@@ -22,5 +23,6 @@ export const LogoDummy = BsPatchPlus;
 export const CloseButton = IoMdClose;
 export const ArrowRightIcon = IoIosArrowForward;
 export const ArrowLeftIcon = IoIosArrowBack;
+export const ArrowUpIcon = CgArrowTopRight;
 
 // export const OutlinedArrowRight = IoIosArrowDropright

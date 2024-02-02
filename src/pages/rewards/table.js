@@ -176,7 +176,12 @@ export default function BasicTable() {
                             {
                                 tableHeaders.map((header, index) => (
                                     <TableCell
-                                        style={{ color: "#9BA8B0", borderBottom: "1px solid #4C4E57", }}
+                                        style={{
+                                            color: "#9BA8B0",
+                                            borderBottom: "1px solid #4C4E57",
+                                            paddingTop: "8px",
+                                            paddingBottom: "8px"
+                                        }}
                                         key={index}>
                                         {header}
                                     </TableCell>

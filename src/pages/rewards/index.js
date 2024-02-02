@@ -7,6 +7,7 @@ import RewardProgramBar from "./rewardProgramBar";
 import { logo, optimisonLogo } from "../../assets/images";
 import CustomTable from "../../utils/table";
 import RewardTable from "./table";
+import { ArrowUpIcon } from "../../assets/icons";
 
 export default function Rewards() {
     return (
@@ -14,7 +15,7 @@ export default function Rewards() {
             <Header2 title="Rewards" />
             <div>
                 <div className="text-zinc-400 pt-6 ps-4">Overview</div>
-                <div className=" md:flex gap-4 ">
+                <div className=" mdd:flex gap-4 mb-16">
                     <RewardBar
                         title="ACX Rewards"
                         icon={<TfiMedallAlt />}
@@ -31,9 +32,9 @@ export default function Rewards() {
             <RewardTable />
             <div>
                 <div className="text-zinc-400 pt-6 ps-4">Reward programs</div>
-                <div className="md:flex gap-4">
+                <div className="mdd:flex gap-4 mb-16">
                     <RewardProgramBar
-                        title="Acress Referal Program"
+                        title="Across Referal Program"
                         icon={logo}
                         subTitleOne="Referal rewards"
                         subTitleTwo="Staking rewards" />
@@ -47,23 +48,27 @@ export default function Rewards() {
                 </div>
             </div>
 
-            <footer className="text-zinc-300 flex items-center w-[90%] m-auto justify-center gap-5">
-                <p>Got any questions? Check out our FAQ and Discord.</p>
-                {/* <div> */}
+            <footer className="text-zinc-300 mdd:flex max-mdd:text-center items-center overflow-x-hidden w-[90%] m-auto justify-center gap-5">
+                <div className="mdd:w-[60%] max-md:text-sm">
+                    <p>Got any questions? Check out our FAQ and Discord.</p>
+                </div>
+                <div className="flex items-center gap-3 mdd:w-[40%] max-mdd:justify-center max-mdd:pt-6">
                     <button
                         // onClick={onClick}
-                        className="border rounded-full px-6 border-zinc-700 py-[7px]"
+                        className="border rounded-full px-6 border-zinc-700 py-[7px] flex items-center gap-2"
                     >
-                        FAQ
+                        <p>FAQ </p>
+                        <ArrowUpIcon />
                     </button>
 
                     <button
                         // onClick={onClick}
-                        className="border rounded-full px-6 border-zinc-700 py-[7px]"
+                        className="border rounded-full px-6 border-zinc-700 py-[7px] flex items-center gap-2"
                     >
-                        Discord
+                        <p>Discord </p>
+                        <ArrowUpIcon />
                     </button>
-                {/* </div> */}
+                </div>
             </footer>
         </div>
     )

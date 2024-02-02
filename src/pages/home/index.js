@@ -1,11 +1,10 @@
 import React from "react";
 import Header from "../../components/layouts/header";
-import { ArrowDownIcon } from "../../assets/icons";
+import { ArrowDownIcon, ArrowUpIcon } from "../../assets/icons";
 import { IoShieldCheckmarkOutline, IoDiamondOutline, IoFlashOutline } from "react-icons/io5";
 import { SlPeople } from "react-icons/sl";
 import { backgroundLinesOne } from "../../assets/images";
 import { useNavigate } from "react-router-dom";
-import { CgArrowTopRight } from "react-icons/cg";
 
 export function Home() {
     const navigate = useNavigate();
@@ -73,7 +72,7 @@ export function Home() {
                             // onClick={() => setWalletModal(true)}
                             className=" flex gap-2 items-center rounded-full px-6 text-zinc-300 py-[7px]"
                         >
-                            {"Read docs"} <CgArrowTopRight />
+                            {"Read docs"} <ArrowUpIcon />
                         </button>
                     </div>
                 </div>

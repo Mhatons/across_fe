@@ -7,7 +7,7 @@ import { TbRosette } from "react-icons/tb";
 export default function RewardBar(props) {
     const { title, subTitleOne, subTitleTwo, icon } = props
     return (
-        <div style={{ backgroundImage: `url(${backgroundLinesOne})`, backgroundRepeat: "no-repeat" }} className="bg-[#34353B] border w-full border-zinc-700 rounded-xl mb-16 mt-4">
+        <div style={{ backgroundImage: `url(${backgroundLinesOne})`, backgroundRepeat: "no-repeat" }} className="bg-[#34353B] border w-full border-zinc-700 rounded-xl mt-4">
             <div className="">
                 <section className="border-b border-[#3A4B4C] px-4 py-6 flex justify-between items-center">
                     <div className="flex w-[70%] items-center gap-3">
