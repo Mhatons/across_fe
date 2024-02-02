@@ -242,7 +242,7 @@ export default function BasicTable() {
                                                 </div>
                                                 <button
                                                     onClick={() => navigate("/pool")}
-                                                    className="border rounded-full px-4 text-primGreen hover:text-[#5EC8B1] hover:border-[#5EC8B1] border-primGreen font-semibold py-[10px]"
+                                                    className="border rounded-full px-4 text-primGreen hover:text-hoverGreen hover:border-hoverGreen border-primGreen font-semibold py-[10px]"
                                                 >
                                                     Add
                                                 </button>

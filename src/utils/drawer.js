@@ -80,7 +80,7 @@ export default function CustomDrawer() {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <Box className="flex items-center justify-between bg-[#6CF9D8] py-6 px-6 ">
+            <Box className="flex items-center justify-between bg-primGreen py-6 px-6 ">
                 <button
                     onClick={() => setWalletModal(true)}
                     className=" rounded-full mdd:px-12 px-6 text-white bg-[#34353A] hover:bg-[#3D615C] duration-500 font-semibold max-mdd:h-[40px] mdd:py-5 py-2"

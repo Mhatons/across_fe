@@ -5,7 +5,6 @@ import { TfiMedallAlt } from "react-icons/tfi";
 import { IoTrendingUp } from "react-icons/io5";
 import RewardProgramBar from "./rewardProgramBar";
 import { logo, optimisonLogo } from "../../assets/images";
-import CustomTable from "../../utils/table";
 import RewardTable from "./table";
 import { ArrowUpIcon } from "../../assets/icons";
 
@@ -34,7 +33,7 @@ export default function Rewards() {
                 <div className="text-zinc-400 pt-6 ps-4">Reward programs</div>
                 <div className="mdd:flex gap-4 mb-16">
                     <RewardProgramBar
-                        title="Across Referal Program"
+                        title="Defi protocol Referal Program"
                         icon={logo}
                         subTitleOne="Referal rewards"
                         subTitleTwo="Staking rewards" />

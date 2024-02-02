@@ -29,7 +29,7 @@ export default function ReferalBar(props) {
                 </section>
 
                 <div className=" flex justify-between text-zinc-400 py-4 items-center">
-                    <div>Across Referal Rewards</div>
+                    <div>Defi protocol Referal Rewards</div>
                     <div className="flex items-center w-[60px] justify-between border-[#3A4B4C] px-3 py-1 border rounded-full">
                         <img src={logo} alt="logo" className="w-[17px] opacity-50" />
                         <div className="text-zinc-500">-</div>
@@ -76,7 +76,7 @@ export default function ReferalBar(props) {
 
                 <button
                      onClick={() => setWalletModal(true)}
-                    className=" smm:text-lg text-md rounded-full w-full hover:bg-[#5EC8B1] px-6 text-[#2F3035] bg-primGreen font-semibold mdd:py-5 max-[190px]:py-0 py-2">
+                    className=" smm:text-lg text-md rounded-full w-full hover:bg-hoverGreen px-6 text-[#2F3035] bg-primGreen font-semibold mdd:py-5 max-[190px]:py-0 py-2">
                     {"Connect wallet"}
                 </button>
             </div>

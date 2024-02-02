@@ -7,7 +7,7 @@ export default function Button(props) {
     return (
         <button
             onClick={() => setWalletModal(true)}
-            className="border rounded-full px-6 text-primGreen hover:text-[#5EC8B1] hover:border-[#5EC8B1] border-primGreen font-semibold py-[7px]"
+            className="border rounded-full px-6 text-primGreen hover:text-hoverGreen hover:border-hoverGreen border-primGreen font-semibold py-[7px]"
         >
             {text}
         </button>

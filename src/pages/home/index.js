@@ -1,6 +1,5 @@
 import React from "react";
-import Header from "../../components/layouts/header";
-import { ArrowDownIcon, ArrowUpIcon } from "../../assets/icons";
+import { ArrowUpIcon } from "../../assets/icons";
 import { IoShieldCheckmarkOutline, IoDiamondOutline, IoFlashOutline } from "react-icons/io5";
 import { SlPeople } from "react-icons/sl";
 import { backgroundLinesOne } from "../../assets/images";
@@ -37,17 +36,17 @@ export function Home() {
         {
             icon: <IoFlashOutline />,
             title: "fast",
-            desc: "Across is able to offer extremely fast bridging. Today, that means bridging under 1 minute on average. In the future, next-block bridging will be possible."
+            desc: "Defi protocol is able to offer extremely fast bridging. Today, that means bridging under 1 minute on average. In the future, next-block bridging will be possible."
         },
         {
             icon: <SlPeople />,
             title: "growing",
-            desc: "There are many ways to become a part of this mission, earn ACX rewards, and help guide the direction of the Across DAO. The place to start is in the community."
+            desc: "There are many ways to become a part of this mission, earn ACX rewards, and help guide the direction of the Defi protocol DAO. The place to start is in the community."
         },
         {
             icon: <IoDiamondOutline />,
             title: "Capital Efficient",
-            desc: "Higher capital efficiency means lower costs and fewer funds at risk. Across was built with the thesis that capital efficiency is the single most important measure of a cross-chain bridge."
+            desc: "Higher capital efficiency means lower costs and fewer funds at risk. Defi protocol was built with the thesis that capital efficiency is the single most important measure of a cross-chain bridge."
         },
     ]
     return (
@@ -58,7 +57,7 @@ export function Home() {
                     <p className="homeText">Ethereum Deserves</p>
                 </header>
                 <div className="smm:w-[400px] m-auto text-zinc-300 pt-4">
-                    Across is a cross-chain bridge for L2s and rollups secured by UMA's optimistic oracle.
+                    Defi protocol is a cross-chain bridge for L2s and rollups secured by UMA's optimistic oracle.
                 </div>
                 <div className="flex items-center justify-center pt-12">
                     <div className="flex items-center gap-3">
@@ -98,7 +97,7 @@ export function Home() {
                                 className="border border-zinc-700 hover:shadow-2xl p-6 rounded-xl bg-[#2C2D32]">
                                 <header className="flex items-center gap-3 text-[20px] font-semibold">
                                     <div
-                                        className="text-[30px] text-[#6CF9D8]">
+                                        className="text-[30px] text-primGreen">
                                         {content.icon}
                                     </div>
                                     <h4 className="text-zinc-300 capitalize">{content.title}</h4>

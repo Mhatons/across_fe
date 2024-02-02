@@ -1,7 +1,5 @@
 import React from "react";
-import Button from "../../components/commons/button";
 import { backgroundLinesOne, logo } from "../../assets/images";
-import { ArrowDownIcon, InfoIcon } from "../../assets/icons";
 import { TbRosette } from "react-icons/tb";
 
 export default function RewardBar(props) {

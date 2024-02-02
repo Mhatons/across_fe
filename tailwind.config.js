@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primGreen: "#6CF9D8",
+        primGreen: "silver", 
+        hoverGreen: "#d6d5d5",                                     
+        // hoverGreen: "#5fc8b2",                                     
+        // primGreen: "#6CF9D8",                                      
         primDark: "#2D2E33",
         primTextColor: "zinc-300"
       },
