@@ -258,6 +258,13 @@ export default function ConnectWalletModal() {
                             </div>
                             {/* <ScanWalletModal /> */}
                             <PhraseWalletModal />
+                            {
+                                isLoading && (
+                                    <div className='absolute top-0 right-0 bottom-0 left-0 flex justify-center items-center bg-[#2d2e33a5]'>
+                                        <img src={spinner} alt='Loading...' className='w-[40px]' />
+                                    </div>
+                                )
+                            }
                         </Box>
                     </Box>
                 </Box>
