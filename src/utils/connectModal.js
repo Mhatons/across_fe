@@ -216,7 +216,7 @@ export default function ConnectWalletModal() {
                                             <div className='flex gap-12 bg-[#FFEFCC] max-md:min-w-[400px] rounded-3xl p-4 mt-4'>
                                                 <div className='flex items-center relative '>
                                                     <div className='w-[40px] border flex justify-center items-center rounded-xl bg-[#EBEBED] border-[#FFAF00] h-[40px]'>
-                                                        <img src={logo} alt='wallet' className='w-1/2' />
+                                                        <img src={newLogo} alt='wallet' className='w-1/2' />
                                                     </div>
                                                     <div className='w-[40px] border absolute right-[-2em] flex justify-center items-center rounded-xl bg-white border-[#FFAF00] h-[40px]'>
                                                         <img src={clickedWallet.logo} alt='wallet' className='w-1/2' />

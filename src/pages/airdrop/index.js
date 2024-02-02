@@ -1,10 +1,8 @@
-import React, { useContext, useState } from "react";
-import Header from "../../components/layouts/header";
-import { ArrowDownIcon, ArrowRightIcon, BridgeIcon } from "../../assets/icons";
-import ReferalBar from "../bridge/referalBar";
+import React, { useContext } from "react";
+import { ArrowRightIcon } from "../../assets/icons";
 import { myContext } from "../../MyContext";
 import AirdropDetails from "./airdropDetails";
-import { logo } from "../../assets/images";
+import { logo, newLogo } from "../../assets/images";
 
 export default function Airdrop() {
     const { setWalletModal, setCurrentPage, currentPage } = useContext(myContext);
@@ -15,7 +13,7 @@ export default function Airdrop() {
                     <AirdropDetails />
                 ) : (
                     <div className=" mdd:w-[500px] m-auto text-center ">
-                        <img src={logo} alt="" className="w-[30%] m-auto py-16"/>
+                        <img src={newLogo} alt="" className="w-[30%] m-auto py-16"/>
                         <header className="homeText smm:text-[40px] text-[25px] ">The ACX token is now live</header>
                         <div className="flex flex-col items-center gap-4 pt-6">
                             <button
