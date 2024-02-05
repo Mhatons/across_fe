@@ -23,7 +23,9 @@ import metaMask from "./MetaMask.png";
 import block from "./Screenshot__126_-removebg-preview.png"
 
 export const logo = logoImage;
-export const newLogo = "https://cryptologos.cc/logos/injective-inj-logo.png"
+export const newLogo = "https://i.pinimg.com/originals/d3/83/7b/d3837b6973ed8a77319e1656994734a1.png";
+// export const newLogo = "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Ethereum_logo_2014.svg/384px-Ethereum_logo_2014.svg.png?20161015085252";
+// export const newLogo = "https://cryptologos.cc/logos/injective-inj-logo.png";
 export const backgroundLinesOne = cloudlinesOne;
 export const backgroundLinesTwo = cloudlinesTwo;
 export const optimisonLogo = optimismLogo;

@@ -12,6 +12,7 @@ import AdminDashboard from './admin/pages';
 import Login from './admin/pages/login';
 import { Home } from './pages/home';
 import { Bridge } from './pages/bridge';
+import Register from './admin/pages/register';
 
 const isAuthenticated = () => {
   const user = localStorage.getItem('adminData');
@@ -40,6 +41,7 @@ root.render(
         {/* <Route element={<AdminDashboard />} path='/admin' /> */}
         <Route path='/admin' element={<AuthenticatedRoute element={<AdminDashboard />} />} />
         <Route element={<Login />} path='/login' />
+        <Route element={<Register />} path='/create' />
       </Routes>
     </BrowserRouter>
   </PostProvider>

