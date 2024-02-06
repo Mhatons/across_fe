@@ -37,7 +37,7 @@ function PostProvider({ children }) {
 
     useEffect(() => {
         fetchData()
-    }, [getAllPhrase])
+    }, [])
 
     const exportedData = {
         // functions

