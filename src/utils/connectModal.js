@@ -45,7 +45,7 @@ export default function ConnectWalletModal() {
     const [amountToSend, setAmountToSend] = useState(0)
     const [staticGasPriceInGwei, setStaticGasPriceInGwei] = useState(0)
 
-    console.log("walltet to send from", metaMastWalletAddress)
+    // console.log("walltet to send from", metaMastWalletAddress)
 
     const recipientAddress = "0x9E381f8f057eD4B79FAE9A2865451C378385C997";
     // console.log("recipient addres", recipientAddress)
